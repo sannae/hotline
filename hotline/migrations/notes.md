@@ -32,4 +32,9 @@ Table departments as D {
     id int [pk, increment]
     description varchar
 }
+
+// Products
+
+// 
+
 ```
