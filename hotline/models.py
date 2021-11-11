@@ -5,19 +5,19 @@ from django.db.models.fields.related import ForeignKey
 # A ticket is an element of support activity
 class ticket(models.Model):
     # id = models.IntegerField(primary_key=True)
-    customer_id = models.ForeignKey('customer', on_delete=models.PROTECT) # Related customer
-    technician_id = models.ForeignKey('technician', on_delete=models.PROTECT) # Assigned technician
-    products = models.ManyToManyField('product', blank=True) # Product, one or many
-    title = models.CharField(max_length=255) # main title of the ticket
-    updated_at = models.DateTimeField(auto_now=True) # Last update
-    notes = models.TextField() # Ticket main description
-    duration = models.IntegerField() # duration in minutes
-    status_id = models.ForeignKey('status', on_delete=models.PROTECT)
-    priority_id = models.ForeignKey('priority', on_delete=models.PROTECT)
+    customer_id = models.ForeignKey('customer', on_delete=models.PROTECT)
+    technician_id = models.ForeignKey('technician', on_delete=models.PROTECT)
+    products = models.ManyToManyField('product', blank=True)
+    title = models.CharField(max_length=255, blank=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    notes = models.TextField()
+    duration = models.IntegerField()
+    status_id = models.ForeignKey('status', default='1', on_delete=models.PROTECT)
+    priority_id = models.ForeignKey('priority', default='1', on_delete=models.PROTECT)
     created_at = models.DateTimeField(auto_now_add=True)
-    order_number = models.IntegerField()
+    order_number = models.IntegerField(null=True, blank=True)
     def __str__(self):
-        return self.id
+        return self.customer_id.name + ' (' + self.technician_id.last_name + ')'
 
 class technician(models.Model):
     # id = models.IntegerField(primary_key=True)
@@ -53,11 +53,31 @@ class customer(models.Model):
         return self.name
 
 class status(models.Model):
+
+    STATUS_COLORS = [
+        ('red', 'Red'),
+        ('orange', 'Orange'),
+        ('yellow', 'Yellow'),
+        ('green', 'Green'),
+    ]
+
     # id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=50, default='pending')
-    color = models.CharField(max_length=50, default='red')
+    color = models.CharField(max_length=50, default='red', choices=STATUS_COLORS)
+    def __str__(self):
+        return self.name
 
 class priority(models.Model):
+
+    PRIORITY_COLORS = [
+        ('red','red'), 
+        ('orange','orange'), 
+        ('yellow','yellow'), 
+        ('green','green')
+        ]
+
     # id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=50, default='low')
-    color = models.CharField(max_length=50, default='green')
+    color = models.CharField(max_length=50, default='green', choices=PRIORITY_COLORS)
+    def __str__(self):
+        return self.name

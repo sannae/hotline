@@ -34,6 +34,7 @@ ALLOWED_HOSTS = [
 
 INSTALLED_APPS = [
     'hotline.apps.HotlineConfig',
+    'django_material_icons',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
