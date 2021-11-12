@@ -34,7 +34,8 @@
                 {% endif %}
             </td>
             <td>{{ticket.updated_at|date:"d-m-Y H:m"}}</td>
-            <td>{{ticket.technician_id}}</td>
+            <td><a href="{% url 'technician_detail' ticket.technician_id.id %}">
+                {{ticket.technician_id}}</a></td>
             <td>{{ticket.duration}}</td>
             <td>{{ticket.status_id}}</td>
             <td>{{ticket.priority_id}}</td>
