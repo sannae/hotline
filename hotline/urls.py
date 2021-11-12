@@ -8,4 +8,7 @@ urlpatterns = [
 
     # New ticket
     path('new/', views.new_ticket, name='new_ticket'),
+
+    # Customer detail
+    path('customer/<str:pk>', views.customer_detail, name="customer_detail"),
 ]

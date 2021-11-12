@@ -25,7 +25,7 @@
     <tbody>
         {% for ticket in tickets %}
         <tr>
-            <td>{{ticket.customer_id}}
+            <td><a href="{% url 'customer_detail' ticket.customer_id.id %}">{{ticket.customer_id}}</a>
                 {% if ticket.customer_id.sw_contract == True %}
                 <span class="badge rounded-pill bg-primary">SW</span>
                 {% endif %}
