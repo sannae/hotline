@@ -12,6 +12,9 @@ urlpatterns = [
     # Customer detail
     path('customer/<str:pk>', views.customer_detail, name="customer_detail"),
 
+    # Customer list
+    path('customer_list', views.customer_list, name="customer_list"),
+
     # Technician detail
     path('technician/<str:pk>', views.technician_detail, name="technician_detail"),
 ]

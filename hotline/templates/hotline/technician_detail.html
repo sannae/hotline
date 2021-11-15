@@ -3,17 +3,12 @@
 
 {% block content %}
 
-<h2>{{ my_customer.name }}</h2>
+<h2>{{ my_technician.first_name }} {{ my_technician.last_name }}</h2>
 
 <h5>Dettagli</h5>
-<h5>Dati anagrafici</h5>
-<h6>Richiedi modifica</h6>
-<h5>Licenza</h5>
-<h5>Risorse</h5>
 
 <h3>Ultimi ticket</h3>
-
-<h3>Progetti in corso</h3>
+{% include 'hotline/ticket_table.html' %}
 
 <a href="{% url 'home' %}">Indietro</a>
 

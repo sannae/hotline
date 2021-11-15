@@ -1,0 +1,44 @@
+{% extends 'hotline/home.html' %}
+
+{% block content %}
+
+<h3>Clienti</h3>
+
+<h4>Cerca per ragione sociale</h4>
+
+<h5>Cerca per qualsiasi stringa</h5>
+<h5>Filtra per contratti attivi</h5>
+
+<!-- Customer table ---->
+<table class="table table-responsive">
+    <thead class="thead dark">
+        <tr>
+            <th scope="col">Cliente</th>
+            <th scope="col">Riferimento</th>
+            <th scope="col">Indirizzo</th>
+            <th scope="col">Telefono</th>
+            <th scope="col">Contratti</th>
+            <th scope="col">Ticket aperti</th>
+            <th scope="col"><!--Modifica--></th>
+            <th scope="col"><!--Cancella--></th>            
+        </tr>
+    </thead>
+    <tbody>
+        {% for customer in customers %}
+        <tr>
+            <td><a href="{% url 'customer_detail' customer.id %}">{{customer.name}}</a></td>
+            <td>{{customer.reference}}</td>
+            <td>{{customer.address}}</td>
+            <td>{{customer.phone}}</td>
+            <td>{{customer.priority_id}}</td>
+            <td><!-- Ticket aperti --></td>
+            <td><!--Contratti--></td>
+            <td><span class="badge bg-warning"><b>Modifica</b></span></td>
+            <td><span class="badge bg-danger"><b>Cancella</b></span></td>
+            <td></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
