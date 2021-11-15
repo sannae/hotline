@@ -3,7 +3,19 @@
 
 {% block content %}
 
-<h2>{{ my_customer.name }}</h2>
+<h3>Logo</h3>
+
+<h1>{{ my_customer.name }}</h1>
+
+<h2>Contratti attivi:</h2>
+<h2>
+    {% if my_customer.sw_contract == True %}
+    <span class="badge bg-primary">SW</span>
+    {% endif %}
+    {% if my_customer.hw_contract == True %}
+    <span class="badge bg-secondary">HW</span>
+    {% endif %}
+</h2>
 
 <h5>Dettagli</h5>
 <h5>Dati anagrafici</h5>
