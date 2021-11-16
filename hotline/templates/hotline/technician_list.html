@@ -1,0 +1,42 @@
+{% extends 'hotline/home.html' %}
+
+{% block content %}
+
+<h3>Tecnici</h3>
+
+<a href="#" class="btn btn-info btn-lg"><h3>Crea tecnico</h3></a>
+
+<h4>Cerca per dipartimento</h4>
+
+<h5>Cerca per qualsiasi stringa</h5>
+
+<!-- Customer table ---->
+<table class="table table-responsive">
+    <thead class="thead dark">
+        <tr>
+            <th scope="col">Nome completo</th>
+            <th scope="col">Dipartimento</th>
+            <th scope="col">Telefono</th>
+            <th scope="col">Cellulare</th>
+            <th scope="col">Email</th>
+            <th scope="col"><!--Modifica--></th>
+            <th scope="col"><!--Cancella--></th>            
+        </tr>
+    </thead>
+    <tbody>
+        {% for technician in technicians %}
+        <tr>
+            <td><a href="{% url 'technician_detail' technician.id %}">{{technician.first_name}} {{technician.last_name}}</a></td>
+            <td>{{technician.department_id}}</td>
+            <td>{{technician.office_phone}}</td>
+            <td>{{technician.mobile_phone}}</td>
+            <td>{{technician.email}}</td>
+            <td><span class="badge bg-warning"><b>Modifica</b></span></td>
+            <td><span class="badge bg-danger"><b>Cancella</b></span></td>
+            <td></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

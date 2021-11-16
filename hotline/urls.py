@@ -17,4 +17,8 @@ urlpatterns = [
 
     # Technician detail
     path('technician/<str:pk>', views.technician_detail, name="technician_detail"),
+
+    # Technician list
+    path('technician_list', views.technician_list, name="technician_list"),
+
 ]

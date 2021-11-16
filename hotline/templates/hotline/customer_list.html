@@ -4,6 +4,8 @@
 
 <h3>Clienti</h3>
 
+<a href="#" class="btn btn-info btn-lg"><h3>Crea cliente</h3></a>
+
 <h4>Cerca per ragione sociale</h4>
 
 <h5>Cerca per qualsiasi stringa</h5>
@@ -26,7 +28,14 @@
     <tbody>
         {% for customer in customers %}
         <tr>
-            <td><a href="{% url 'customer_detail' customer.id %}">{{customer.name}}</a></td>
+            <td><a href="{% url 'customer_detail' customer.id %}">{{customer.name}}</a>
+                {% if customer.sw_contract == True %}
+                <span class="badge rounded-pill bg-primary">SW</span>
+                {% endif %}
+                {% if customer.hw_contract == True %}
+                <span class="badge rounded-pill bg-secondary">HW</span>
+                {% endif %}            
+            </td>
             <td>{{customer.reference}}</td>
             <td>{{customer.address}}</td>
             <td>{{customer.phone}}</td>
@@ -40,5 +49,7 @@
         {% endfor %}
     </tbody>
 </table>
+
+<a href="{% url 'home' %}">Indietro</a>
 
 {% endblock %}

@@ -23,6 +23,9 @@ class technician(models.Model):
     # id = models.IntegerField(primary_key=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
+    office_phone = models.CharField(max_length=15, null=True, blank=True)
+    mobile_phone = models.CharField(max_length=15, null=True, blank=True)
+    email = models.CharField(max_length=100, null=True, blank=True) 
     department_id = ForeignKey('department', on_delete=models.PROTECT)
     def __str__(self):
         return self.last_name
@@ -45,6 +48,8 @@ class customer(models.Model):
     # id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=255)
     reference = models.CharField(max_length=255)
+    reference_phone = models.CharField(max_length=50, null=True, blank=True)
+    reference_email = models.CharField(max_length=50, null=True, blank=True)
     address = models.CharField(max_length=255, null=True, blank=True)
     phone = models.CharField(max_length=255, null=True, blank=True)
     sw_contract = BooleanField(default=False)

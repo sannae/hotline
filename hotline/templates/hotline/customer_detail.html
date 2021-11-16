@@ -7,8 +7,7 @@
 
 <h1>{{ my_customer.name }}</h1>
 
-<h2>Contratti attivi:</h2>
-<h2>
+<h2>Contratti attivi al {{ current_year }}:
     {% if my_customer.sw_contract == True %}
     <span class="badge bg-primary">SW</span>
     {% endif %}
@@ -25,6 +24,7 @@
 <h5>Licenza</h5>
 
 <h5>Risorse</h5>
+<h6>VPN e collegamenti</h6>
 
 <h3>Ultimi ticket</h3>
 {% include 'hotline/ticket_table.html' %}

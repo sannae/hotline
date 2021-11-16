@@ -6,6 +6,13 @@
 <h2>{{ my_technician.first_name }} {{ my_technician.last_name }}</h2>
 
 <h5>Dettagli</h5>
+<ul>
+    <li><b>Nome:</b> {{ my_technician.first_name }}</li>
+    <li><b>Cognome:</b> {{ my_technician.last_name }}</li>
+    <li><b>E-mail:</b> {{ my_technician.email }}</li>
+    <li><b>Telefono:</b> {{ my_technician.office_phone }}</li>
+    <li><b>Cellulare:</b> {{ my_technician.mobile_phone }}</li>
+</ul>
 
 <h3>Ultimi ticket</h3>
 {% include 'hotline/ticket_table.html' %}
