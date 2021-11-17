@@ -6,6 +6,11 @@
 <h3>Logo</h3>
 
 <h1>{{ my_customer.name }}</h1>
+<ul>
+    <li><b>Riferimento:</b>{{ my_customer.reference }} {{ my_customer.phone }} {{ my_customer.email }}</li>
+    <li><b>Indirizzo:</b>{{ my_customer.address }}</li>
+    <li><b>Telefono:</b>{{ my_customer.phone }}</li>
+</ul>
 
 <h2>Contratti attivi al {{ current_year }}:
     {% if my_customer.sw_contract == True %}

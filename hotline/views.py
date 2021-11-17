@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.http import HttpResponse
-from hotline.models import *
+from .models import *
+from .forms import *
 from datetime import datetime
 
 # Querysets
@@ -20,9 +21,25 @@ def dashboard(request):
 
     return render(request, 'hotline/dashboard.html', context)
 
+# --- Tickets ---
+
 # Create a new ticket
 def new_ticket(request):
-    return render(request, 'hotline/new_ticket.html')
+    form = ticketForm()
+
+    # If the form is submitted
+    if request.method == 'POST':
+        form = ticketForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+
+    context = {
+        'new_ticket_form': form
+    }
+    return render(request, 'hotline/new_ticket.html', context)
+
+# --- Customers ---
 
 # Customer detail page
 def customer_detail(request, pk):
@@ -43,6 +60,12 @@ def customer_list(request):
         'customers': customers
     }
     return render(request, 'hotline/customer_list.html', context)
+
+# Create a new customer
+def new_customer(request):
+    return render(request, 'hotline/new_customer.html')
+
+# --- Technicians ---
 
 # Technician detail page
 def technician_detail(request, pk):

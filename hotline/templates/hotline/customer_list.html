@@ -19,7 +19,6 @@
             <th scope="col">Riferimento</th>
             <th scope="col">Indirizzo</th>
             <th scope="col">Telefono</th>
-            <th scope="col">Contratti</th>
             <th scope="col">Ticket aperti</th>
             <th scope="col"><!--Modifica--></th>
             <th scope="col"><!--Cancella--></th>            
@@ -39,11 +38,9 @@
             <td>{{customer.reference}}</td>
             <td>{{customer.address}}</td>
             <td>{{customer.phone}}</td>
-            <td>{{customer.priority_id}}</td>
             <td><!-- Ticket aperti --></td>
-            <td><!-- Contratti --></td>
-            <td><span class="badge bg-warning"><b>Modifica</b></span></td>
-            <td><span class="badge bg-danger"><b>Cancella</b></span></td>
+            <td><span class="btn btn-warning"><b>Modifica</b></span></td>
+            <td><span class="btn btn-danger"><b>Cancella</b></span></td>
             <td></td>
         </tr>
         {% endfor %}

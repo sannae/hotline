@@ -7,7 +7,10 @@ urlpatterns = [
     path('', views.dashboard, name='home'),
 
     # New ticket
-    path('new/', views.new_ticket, name='new_ticket'),
+    path('new_ticket/', views.new_ticket, name='new_ticket'),
+
+    # New customer
+    path('new_customer/', views.new_customer, name='new_customer'),
 
     # Customer detail
     path('customer/<str:pk>', views.customer_detail, name="customer_detail"),
