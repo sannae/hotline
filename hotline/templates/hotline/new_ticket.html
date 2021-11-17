@@ -10,8 +10,19 @@
     {% csrf_token %}
 
     <!-- Model form -->
-    {{ new_ticket_form }}
-
+    <ul>
+        <li><b>Cliente:</b>{{ new_ticket_form.customer_id }}</li>
+        <li><b>Tecnico:</b>{{ new_ticket_form.technician_id }}</li>
+        <li><b>Prodotti:</b>{{ new_ticket_form.products }}</li>
+        <li><b>Titolo:</b>{{ new_ticket_form.title }}</li>
+        <li><b>Descrizione:</b>{{ new_ticket_form.notes }}</li>
+        <li><b>Durata:</b>{{ new_ticket_form.duration }}</li>
+        <li><b>Status:</b>{{ new_ticket_form.status_id }}</li>
+        <li><b>Priorità:</b>{{ new_ticket_form.priority_id }}</li>
+        <li><b>Numero d'ordine:</b>{{ new_ticket_form.order_number }}</li>
+    </ul>
+    
+    <!-- Submit -->
     <input type="submit" class="btn btn-primary">Submit</button>
 
 </form>

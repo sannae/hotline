@@ -10,7 +10,7 @@ class ticket(models.Model):
     products = models.ManyToManyField('product', blank=True)
     title = models.CharField(max_length=255, blank=True)
     updated_at = models.DateTimeField(auto_now=True)
-    notes = models.TextField()
+    notes = models.TextField(blank=True)
     duration = models.IntegerField()
     status_id = models.ForeignKey('status', default='1', on_delete=models.PROTECT)
     priority_id = models.ForeignKey('priority', default='1', on_delete=models.PROTECT)
