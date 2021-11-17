@@ -4,7 +4,7 @@
 
 <h3>Clienti</h3>
 
-<a href="#" class="btn btn-info btn-lg"><h3>Crea cliente</h3></a>
+<a href="{% url 'new_customer' %}" class="btn btn-info btn-lg"><h3>Crea cliente</h3></a>
 
 <h4>Cerca per ragione sociale</h4>
 
@@ -38,9 +38,9 @@
             <td>{{customer.reference}}</td>
             <td>{{customer.address}}</td>
             <td>{{customer.phone}}</td>
-            <td><!-- Ticket aperti --></td>
-            <td><span class="btn btn-warning"><b>Modifica</b></span></td>
-            <td><span class="btn btn-danger"><b>Cancella</b></span></td>
+            <td>{{customer.ticket_set.count}}</td>
+            <td><span class="btn btn-warning"><i class="bi bi-pen"></i></span></td>
+            <td><span class="btn btn-danger"><i class="bi bi-trash"></i></span></td>
             <td></td>
         </tr>
         {% endfor %}

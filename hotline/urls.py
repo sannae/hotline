@@ -15,6 +15,9 @@ urlpatterns = [
     # Customer detail
     path('customer/<str:pk>', views.customer_detail, name="customer_detail"),
 
+    # New ticket
+    path('new_customer/', views.new_customer, name='new_customer'),
+
     # Customer list
     path('customer_list', views.customer_list, name="customer_list"),
 

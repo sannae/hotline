@@ -55,15 +55,26 @@ def customer_detail(request, pk):
 
 # List of customers
 def customer_list(request):
-    customers = all_customers
     context = {
-        'customers': customers
+        'customers': all_customers,
     }
     return render(request, 'hotline/customer_list.html', context)
 
-# Create a new customer
+# Create a new ticket
 def new_customer(request):
-    return render(request, 'hotline/new_customer.html')
+    form = customerForm()
+
+    # If the form is submitted
+    if request.method == 'POST':
+        form = customerForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+
+    context = {
+        'new_customer_form': form
+    }
+    return render(request, 'hotline/new_customer.html', context)
 
 # --- Technicians ---
 

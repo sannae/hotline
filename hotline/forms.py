@@ -26,3 +26,8 @@ class ticketForm(ModelForm):
             'priority_id',
             'order_number'
         ]
+    
+class customerForm(ModelForm):
+    class Meta:
+        model = customer
+        fields = '__all__'
