@@ -39,6 +39,14 @@ def new_ticket(request):
     }
     return render(request, 'hotline/new_ticket.html', context)
 
+# Ticket detail page
+def ticket_detail(request, pk):
+    my_ticket = ticket.objects.get(id=pk)
+    context = {
+        'my_ticket': my_ticket,
+    }
+    return render(request, 'hotline/ticket_detail.html', context)
+
 # --- Customers ---
 
 # Customer detail page
@@ -95,3 +103,19 @@ def technician_list(request):
         'technicians': technicians
     }
     return render(request, 'hotline/technician_list.html', context)
+
+# Create a new technician
+def new_technician(request):
+    form = technicianForm()
+
+    # If the form is submitted
+    if request.method == 'POST':
+        form = technicianForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+
+    context = {
+        'new_technician_form': form
+    }
+    return render(request, 'hotline/new_technician.html', context)

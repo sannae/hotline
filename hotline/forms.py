@@ -31,3 +31,8 @@ class customerForm(ModelForm):
     class Meta:
         model = customer
         fields = '__all__'
+
+class technicianForm(ModelForm):
+    class Meta:
+        model = technician
+        fields = '__all__'

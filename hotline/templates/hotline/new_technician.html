@@ -1,0 +1,29 @@
+{% extends 'hotline/home.html' %}
+
+{% block content %}
+
+<h3>Nuovo tecnico</h3>
+
+<form action="#" method="post">
+
+    <!-- Security token -->
+    {% csrf_token %}
+
+    <!-- Model form -->
+    <ul>
+        <li><b>Nome:</b>{{ new_technician_form.first_name }}</li>
+        <li><b>Cognome:</b>{{ new_technician_form.last_name }}</li>
+        <li><b>Telefono:</b>{{ new_technician_form.office_phone }}</li>
+        <li><b>Cellulare:</b>{{ new_technician_form.mobile_phone }}</li>
+        <li><b>Email:</b>{{ new_technician_form.email }}</li>
+        <li><b>Dipartimento:</b>{{ new_technician_form.department_id }}</li>
+    </ul>
+    
+    <!-- Submit -->
+    <input type="submit" class="btn btn-primary"></button>
+
+</form>
+
+<a href="{% url 'home' %}"><h5>Back</h5></a>
+
+{% endblock %}

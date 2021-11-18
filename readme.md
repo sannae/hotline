@@ -2,11 +2,13 @@
 
 ### Manually use me
 
-Manually build me: `sudo docker build -t my-django-image .`
+Manually build me: `docker build -t hotline .`
 
-Manually run me: `sudo docker run --name my-django-cont -p 8000:8000 -d my-django-image`
+Manually run me: `docker run --name hotline -p 8000:8000 -d hotline`
 
-Troubleshoot if port forward not working: `sudo docker logs my-django-cont`
+(It's also available on my [Docker Hub private repository](https://hub.docker.com/repository/docker/sannae/hotline), just run `docker run --name hotline -p 8000:8000 -d sannae/hotline` )
+
+Troubleshoot if port forward is not working: `docker logs hotline`
 
 ### Docker Compose me
 

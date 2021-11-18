@@ -1,0 +1,15 @@
+<!-- Customer detail -->
+{% extends 'hotline/home.html' %}
+
+{% block content %}
+
+<a href="#">Tutti i ticket</a>
+
+<h2>{{ my_ticket.title }}</h2>
+
+<h4>{{ my_ticket.customer_id }}</h4>
+
+
+<a href="{% url 'home' %}">Indietro</a>
+
+{% endblock %}

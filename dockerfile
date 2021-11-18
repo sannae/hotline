@@ -6,6 +6,7 @@ WORKDIR /usr/src/app
 
 # Install dependencies
 COPY requirements.txt ./
+RUN apt autoremove && apt clean
 RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
@@ -13,4 +14,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Run web server
-CMD [ "python", "manage.py", "runserver", "0.0.0.0:8000" ]
+CMD [ "python", "./manage.py", "runserver", "0.0.0.0:8000" ]
