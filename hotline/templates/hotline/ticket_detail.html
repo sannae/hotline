@@ -5,10 +5,19 @@
 
 <a href="#">Tutti i ticket</a>
 
+<br>
+
+<!-- Header -->
 <h2>{{ my_ticket.title }}</h2>
+<h4>per <a href="{% url 'customer_detail' my_ticket.customer_id.id %}">{{ my_ticket.customer_id }}</a></h4>
+<h5>Intervento effettuato da <a href="{% url 'technician_detail' my_ticket.technician_id.id %}">{{ my_ticket.technician_id.first_name }} {{ my_ticket.technician_id.last_name }}</a></h5>
 
-<h4>{{ my_ticket.customer_id }}</h4>
+<!-- Details -->
+<p><b>Durata:</b> {{ my_ticket.duration }} minuti</p> 
+<p style="color: {{my_ticket.status_id.color}};">{{ my_ticket.status_id }}</p>
 
+<h6>Dettagli:</h6>
+<p>{{ my_ticket.notes }}</p>
 
 <a href="{% url 'home' %}">Indietro</a>
 

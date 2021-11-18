@@ -11,7 +11,7 @@
 <h5>Cerca per qualsiasi stringa</h5>
 
 <!-- Customer table ---->
-<table class="table table-responsive">
+<table class="table table-responsive table-hover">
     <thead class="thead dark">
         <tr>
             <th scope="col">Nome completo</th>
@@ -31,8 +31,8 @@
             <td>{{technician.office_phone}}</td>
             <td>{{technician.mobile_phone}}</td>
             <td>{{technician.email}}</td>
-            <td><span class="badge bg-warning"><i class="bi bi-pen"></i></span></td>
-            <td><span class="badge bg-danger"><i class="bi bi-trash"></i></span></td>
+            <td><a href="#"><span class="badge bg-warning"><i class="bi bi-pen"></i></span></a></td>
+            <td><a href="#"><span class="badge bg-danger"><i class="bi bi-trash"></i></span></a></td>
             <td></td>
         </tr>
         {% endfor %}
