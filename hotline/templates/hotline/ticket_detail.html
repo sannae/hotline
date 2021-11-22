@@ -21,7 +21,7 @@
 
 <h6>Prodotti:</h6>
 {% for product in my_ticket.products.all %}
-    <p>{{ product.name }}</p>
+    <p>{{ product.name }}</p> - <p>{{ product.department_id }}</p>
 {% endfor %}
 
 <a href="{% url 'home' %}">Indietro</a>
