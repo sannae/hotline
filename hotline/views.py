@@ -42,6 +42,8 @@ def new_ticket(request):
 # Ticket detail page
 def ticket_detail(request, pk):
     my_ticket = ticket.objects.get(id=pk)
+    for product in my_ticket.products.all():
+        print(product.name)
     context = {
         'my_ticket': my_ticket,
     }

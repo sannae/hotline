@@ -7,6 +7,8 @@
 
 <h2>{{ my_technician.first_name }} {{ my_technician.last_name }}</h2>
 
+<a href="#">Cancella tecnico</a>
+
 <h5>Dettagli</h5>
 <ul>
     <li><b>Nome:</b> {{ my_technician.first_name }}</li>
@@ -16,7 +18,7 @@
     <li><b>Cellulare:</b> {{ my_technician.mobile_phone }}</li>
 </ul>
 
-<h3>Ultimi ticket</h3>
+<h3>Ultimi ticket di {{ my_technician.first_name }}</h3>
 {% include 'hotline/ticket_table.html' %}
 
 <a href="{% url 'home' %}">Indietro</a>

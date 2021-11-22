@@ -19,6 +19,11 @@
 <h6>Dettagli:</h6>
 <p>{{ my_ticket.notes }}</p>
 
+<h6>Prodotti:</h6>
+{% for product in my_ticket.products.all %}
+    <p>{{ product.name }}</p>
+{% endfor %}
+
 <a href="{% url 'home' %}">Indietro</a>
 
 {% endblock %}
