@@ -1,0 +1,17 @@
+<!-- Product detail -->
+{% extends 'hotline/home.html' %}
+
+{% block content %}
+
+<a href="{% url 'product_list' %}">Tutti i prodotti</a>
+
+<h3>Logo</h3>
+
+<a href="#">Modifica prodotto</a> <a href="#">Cancella prodotto</a>
+
+<h1>{{ my_product.name }}</h1>
+<br>
+<h2><span class="badge bg-primary">{{ my_product.department_id }}</span></h2>
+<p>{{ my_product.description }} </p>
+
+{% endblock %}

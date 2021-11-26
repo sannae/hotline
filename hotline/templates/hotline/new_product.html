@@ -1,0 +1,26 @@
+{% extends 'hotline/home.html' %}
+
+{% block content %}
+
+<h3>Nuovo prodotto</h3>
+
+<form action="#" method="post">
+
+    <!-- Security token -->
+    {% csrf_token %}
+
+    <!-- Model form -->
+    <ul>
+        <li><b>Nome:</b>{{ new_product_form.name }}</li>
+        <li><b>Dipartimento:</b>{{ new_product_form.department_id }}</li>
+        <li><b>Descrizione:</b>{{ new_product_form.description }}</li>
+    </ul>
+    
+    <!-- Submit -->
+    <input type="submit" class="btn btn-primary"></button>
+
+</form>
+
+<a href="{% url 'home' %}"><h5>Back</h5></a>
+
+{% endblock %}

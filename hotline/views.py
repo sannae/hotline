@@ -8,6 +8,7 @@ from datetime import datetime
 all_tickets = ticket.objects.all()
 all_customers = customer.objects.all()
 all_technicians = technician.objects.all()
+all_products = product.objects.all()
 
 # Home page
 def dashboard(request):
@@ -42,8 +43,6 @@ def new_ticket(request):
 # Ticket detail page
 def ticket_detail(request, pk):
     my_ticket = ticket.objects.get(id=pk)
-    for product in my_ticket.products.all():
-        print(product.name)
     context = {
         'my_ticket': my_ticket,
     }
@@ -100,9 +99,8 @@ def technician_detail(request, pk):
 
 # List of technicians
 def technician_list(request):
-    technicians = all_technicians
     context = {
-        'technicians': technicians
+        'technicians': all_technicians
     }
     return render(request, 'hotline/technician_list.html', context)
 
@@ -121,3 +119,36 @@ def new_technician(request):
         'new_technician_form': form
     }
     return render(request, 'hotline/new_technician.html', context)
+
+# --- Products ---
+
+# Product detail page
+def product_detail(request, pk):
+    my_product = product.objects.get(id=pk)
+    context = {
+        'my_product': my_product,
+    }
+    return render(request, 'hotline/product_detail.html', context)
+
+# List of products
+def product_list(request):
+    context = {
+        'products': all_products
+    }
+    return render(request, 'hotline/product_list.html', context)
+
+# Create a new product
+def new_product(request):
+    form = productForm()
+
+    # If the form is submitted
+    if request.method == 'POST':
+        form = productForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+
+    context = {
+        'new_product_form': form
+    }
+    return render(request, 'hotline/new_product.html', context)

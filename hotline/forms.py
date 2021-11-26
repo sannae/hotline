@@ -36,3 +36,8 @@ class technicianForm(ModelForm):
     class Meta:
         model = technician
         fields = '__all__'
+
+class productForm(ModelForm):
+    class Meta:
+        model = product
+        fields = '__all__'

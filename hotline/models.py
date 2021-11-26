@@ -34,6 +34,7 @@ class product(models.Model):
     # id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=50)
     department_id = ForeignKey('department', on_delete=models.PROTECT)
+    description = models.TextField(blank=True, null=True)
     def __str__(self):
         return self.name
 

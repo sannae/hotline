@@ -2,35 +2,29 @@
 
 {% block content %}
 
-<h3>Tecnici</h3>
+<h3>Prodotti</h3>
 
-<a href="{% url 'new_technician' %}" class="btn btn-info btn-lg"><h3>Crea tecnico</h3></a>
+<a href="{% url 'new_product' %}" class="btn btn-info btn-lg"><h3>Crea prodotto</h3></a>
 
 <h4>Cerca per dipartimento</h4>
 
 <h5>Cerca per qualsiasi stringa</h5>
 
-<!-- Customer table ---->
+<!-- Product table ---->
 <table class="table table-responsive table-hover">
     <thead class="thead dark">
         <tr>
-            <th scope="col"><input type="text" class="search-input" placeholder="Nome completo"></th>
+            <th scope="col">Nome completo</th>
             <th scope="col">Dipartimento</th>
-            <th scope="col">Telefono</th>
-            <th scope="col">Cellulare</th>
-            <th scope="col">Email</th>
             <th scope="col"><!--Modifica--></th>
             <th scope="col"><!--Cancella--></th>            
         </tr>
     </thead>
     <tbody>
-        {% for technician in technicians %}
+        {% for product in products %}
         <tr>
-            <td><a href="{% url 'technician_detail' technician.id %}">{{technician.first_name}} {{technician.last_name}}</a></td>
-            <td>{{technician.department_id}}</td>
-            <td>{{technician.office_phone}}</td>
-            <td>{{technician.mobile_phone}}</td>
-            <td>{{technician.email}}</td>
+            <td><a href="{% url 'product_detail' product.id %}">{{product.name}}</a></td>
+            <td>{{product.department_id}}</td>
             <td><a href="#"><span class="badge bg-warning"><i class="bi bi-pen"></i></span></a></td>
             <td><a href="#"><span class="badge bg-danger"><i class="bi bi-trash"></i></span></a></td>
             <td></td>
