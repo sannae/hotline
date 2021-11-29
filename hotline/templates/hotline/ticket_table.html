@@ -1,6 +1,11 @@
 <!-- Ticket table ---->
 
-<table class="table table-responsive table-hover">
+<!-- Search -->
+<h4>Cerca tra tutti i ticket</h4>
+<input type="text" id="SearchInput" onkeyup="filterTable()" placeholder="Cerca su tutti i campi..." title="Type in a name">
+
+<!-- Table -->
+<table id="searchableTable" class="table table-responsive table-hover">
     <thead class="thead dark">
         <tr>
             <th scope="col">Titolo</th>
