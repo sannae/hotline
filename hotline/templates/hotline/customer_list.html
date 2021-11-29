@@ -6,13 +6,14 @@
 
 <a href="{% url 'new_customer' %}" class="btn btn-info btn-lg"><h3>Crea cliente</h3></a>
 
-<h4>Cerca per ragione sociale</h4>
+<!-- Search -->
+<h4>Cerca tra tutti i clienti</h4>
+<input type="text" id="SearchInput" onkeyup="filterTable()" placeholder="Cerca su tutti i campi..." title="Type in a name">
 
-<h5>Cerca per qualsiasi stringa</h5>
 <h5>Filtra per contratti attivi</h5>
 
 <!-- Customer table ---->
-<table class="table table-responsive table-hover">
+<table id="searchableTable" class="table table-responsive table-hover">
     <thead class="thead dark">
         <tr>
             <th scope="col">Cliente</th>

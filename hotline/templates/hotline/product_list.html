@@ -8,10 +8,13 @@
 
 <h4>Cerca per dipartimento</h4>
 
-<h5>Cerca per qualsiasi stringa</h5>
+<!-- Search -->
+<h4>Cerca tra tutti i prodotti</h4>
+<input type="text" id="SearchInput" onkeyup="filterTable()" placeholder="Cerca su tutti i campi..." title="Type in a name">
+
 
 <!-- Product table ---->
-<table class="table table-responsive table-hover">
+<table id="searchableTable" class="table table-responsive table-hover">
     <thead class="thead dark">
         <tr>
             <th scope="col">Nome completo</th>
