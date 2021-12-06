@@ -16,6 +16,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <!-- Bootstrap icons (https://icons.getbootstrap.com/)-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+    <!-- Import the main CSS file in the static files folder -->
+    <link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}">
 
     <title>Hotline</title>
 
@@ -34,39 +36,8 @@
 
 <!-- Bootstrap JS template -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
-<script>
-// https://www.codegrepper.com/code-examples/html/html+filter+table+multiple+columns
-function filterTable() {
-    // Declare variables
-  var input, filter, table, tr, td, i;
-  input = document.getElementById("SearchInput");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("searchableTable");
-  var rows = table.getElementsByTagName("tr");
-
-    // Loop through all table rows, and hide those who don't match the search query
-  for (i = 1; i < rows.length; i++) {
-    var cells = rows[i].getElementsByTagName("td");
-    var j;
-    var rowContainsFilter = false;
-    for (j = 0; j < cells.length; j++) {
-      if (cells[j]) {
-        if (cells[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
-          rowContainsFilter = true;
-          continue;
-        }
-      }
-    }
-
-    if (! rowContainsFilter) {
-      rows[i].style.display = "none";
-    } else {
-      rows[i].style.display = "";
-    }
-  }
-}
-</script>
+<!-- Static JS -->
+<script src="{% static '/js/main.js' %}"></script>
 
 
 </html>

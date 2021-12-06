@@ -4,13 +4,24 @@
 
 <h2>Dashboard</h2>
 
-<a href="{% url 'new_ticket' %}" class="btn btn-success btn-lg"><h3>Crea ticket</h3></a>
+<div class="card">
+    <div class="card-body">
+        <a href="{% url 'new_ticket' %}" class="btn btn-success btn-lg">
+            <h3>Crea ticket</h3>
+        </a>
+    </div>
+</div>
 
-<h3>Ultimi ticket</h3>
+</br>
 
-
-
-{% include 'hotline/ticket_table.html' %}
+<div class="card">
+    <div class="card-title">
+        <h3>Ultimi ticket</h3>
+    </div>
+    <div class="card-body">
+        {% include 'hotline/ticket_table.html' %}
+    </div>
+</div>
 
 <h3>Cerca cliente</h3>
 
