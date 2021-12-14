@@ -1,31 +1,22 @@
 from django.forms import ModelForm
 from .models import *
+from django.apps import apps
+
+def createForm(ModelName):
+    app_models = apps.all_models['hotline']
+    selectedModel = app_models.get(ModelName)
+
+    class createForm(ModelForm):
+        class Meta:
+            model = selectedModel
+            fields = '__all__'
+
+    return createForm
 
 class ticketForm(ModelForm):
     class Meta:
         model = ticket
-        labels = {
-            "customer_id": "Cliente",
-            "technician_id": "Tecnico",
-            "products": "Prodotti",
-            "title": "Titolo",
-            "notes": "Descrizione",
-            "duration": "Durata",
-            "status_id": "Stato",
-            "priority_id": "Priorità",
-            "order_number": "Numero Ordine"
-        }
-        fields = [
-            'customer_id',
-            'technician_id',
-            'products',
-            'title',
-            'notes',
-            'duration',
-            'status_id',
-            'priority_id',
-            'order_number'
-        ]
+        fields = '__all__'
     
 class customerForm(ModelForm):
     class Meta:

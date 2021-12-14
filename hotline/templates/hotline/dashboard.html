@@ -4,30 +4,32 @@
 
 <h2>Dashboard</h2>
 
-<div class="card">
-    <div class="card-body">
+<div class="row">
+    <div class="col-3">
         <a href="{% url 'new_ticket' %}" class="btn btn-success btn-lg">
             <h4>Crea ticket</h4>
+        </a>
+        <a href="{% url 'customer_list' %}" class="btn btn-info btn-lg">
+            <h4>Cerca cliente</h4>
         </a>
     </div>
 </div>
 
 </br>
 
-<div class="card">
-    <div class="card-title">
-        <h4>Ultimi ticket</h4>
+<div class="row">
+    <div class="col-8">
+        <div class="card-title">
+            <h4>Ultimi ticket</h4>
+        </div>
+        <div class="card-body">
+            {% include 'hotline/ticket_table.html' %}
+        </div>
     </div>
-    <div class="card-body">
-        {% include 'hotline/ticket_table.html' %}
+    <div class="col-4">
+        <h3>Statistiche</h3>
+        <h4>Tempistiche medie</h4>
     </div>
 </div>
-
-<h3>Cerca cliente</h3>
-
-<h3>Statistiche</h3>
-
-<h4>Tempistiche medie</h4>
-
 
 {% endblock %}

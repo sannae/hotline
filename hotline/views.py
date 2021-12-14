@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .models import *
 from .forms import *
 from datetime import datetime
+from django.apps import apps
 
 # Querysets
 all_tickets = ticket.objects.all()
@@ -26,11 +27,10 @@ def dashboard(request):
 
 # Create a new ticket
 def new_ticket(request):
-    form = ticketForm()
-
+    form = createForm("ticket")
     # If the form is submitted
     if request.method == 'POST':
-        form = ticketForm(request.POST)
+        form = form(request.POST)
         if form.is_valid():
             form.save()
             return redirect('/')
@@ -38,7 +38,7 @@ def new_ticket(request):
     context = {
         'new_ticket_form': form
     }
-    return render(request, 'hotline/new_ticket.html', context)
+    return render(request, 'hotline/new_ticket.html', context)  
 
 # Ticket detail page
 def ticket_detail(request, pk):
@@ -71,11 +71,10 @@ def customer_list(request):
 
 # Create a new ticket
 def new_customer(request):
-    form = customerForm()
-
+    form = createForm("customer")
     # If the form is submitted
     if request.method == 'POST':
-        form = customerForm(request.POST)
+        form = form(request.POST)
         if form.is_valid():
             form.save()
             return redirect('/')
@@ -83,7 +82,7 @@ def new_customer(request):
     context = {
         'new_customer_form': form
     }
-    return render(request, 'hotline/new_customer.html', context)
+    return render(request, 'hotline/new_customer.html', context)  
 
 # --- Technicians ---
 
@@ -106,11 +105,10 @@ def technician_list(request):
 
 # Create a new technician
 def new_technician(request):
-    form = technicianForm()
-
+    form = createForm("technician")
     # If the form is submitted
     if request.method == 'POST':
-        form = technicianForm(request.POST)
+        form = form(request.POST)
         if form.is_valid():
             form.save()
             return redirect('/')
@@ -118,7 +116,7 @@ def new_technician(request):
     context = {
         'new_technician_form': form
     }
-    return render(request, 'hotline/new_technician.html', context)
+    return render(request, 'hotline/new_technician.html', context)  
 
 # --- Products ---
 
@@ -139,11 +137,10 @@ def product_list(request):
 
 # Create a new product
 def new_product(request):
-    form = productForm()
-
+    form = createForm("product")
     # If the form is submitted
     if request.method == 'POST':
-        form = productForm(request.POST)
+        form = form(request.POST)
         if form.is_valid():
             form.save()
             return redirect('/')
@@ -151,4 +148,4 @@ def new_product(request):
     context = {
         'new_product_form': form
     }
-    return render(request, 'hotline/new_product.html', context)
+    return render(request, 'hotline/new_product.html', context)  
