@@ -60,11 +60,11 @@ class customer(models.Model):
 
 class status(models.Model):
 
-    STATUS_COLORS = [
-        ('red', 'Red'),
-        ('orange', 'Orange'),
-        ('yellow', 'Yellow'),
-        ('green', 'Green'),
+    STATUS_COLORS = [     # Values from pill badges in Bootstrap
+        ('bg-danger','red'),    
+        ('bg-warning','orange'), 
+        ('bg-light','white'), 
+        ('bg-success','green')
     ]
 
     # id = models.IntegerField(primary_key=True)
@@ -76,11 +76,11 @@ class status(models.Model):
 class priority(models.Model):
 
     PRIORITY_COLORS = [
-        ('red','red'), 
-        ('orange','orange'), 
-        ('yellow','yellow'), 
-        ('green','green')
-        ]
+        ('red', 'Red'),
+        ('orange', 'Orange'),
+        ('yellow', 'Yellow'),
+        ('green', 'Green'),
+    ]
 
     # id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=50, default='low')

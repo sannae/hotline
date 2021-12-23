@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h3>Nuovo ticket</h3>
+<h3>New ticket</h3>
 
 <form action="#" method="post">
 
@@ -11,22 +11,20 @@
 
     <!-- Model form -->
     <ul>
-        <li><b>Cliente:</b>{{ new_ticket_form.customer_id }}</li>
-        <li><b>Tecnico:</b>{{ new_ticket_form.technician_id }}</li>
-        <li><b>Prodotti:</b>{{ new_ticket_form.products }}</li>
-        <li><b>Titolo:</b>{{ new_ticket_form.title }}</li>
-        <li><b>Descrizione:</b>{{ new_ticket_form.notes }}</li>
-        <li><b>Durata:</b>{{ new_ticket_form.duration }}</li>
+        <li><b>Customer:</b>{{ new_ticket_form.customer_id }}</li>
+        <li><b>Technician:</b>{{ new_ticket_form.technician_id }}</li>
+        <li><b>Products:</b>{{ new_ticket_form.products }}</li>
+        <li><b>Title:</b>{{ new_ticket_form.title }}</li>
+        <li><b>Description:</b>{{ new_ticket_form.notes }}</li>
+        <li><b>Duration:</b>{{ new_ticket_form.duration }}</li>
         <li><b>Status:</b>{{ new_ticket_form.status_id }}</li>
-        <li><b>Priorità:</b>{{ new_ticket_form.priority_id }}</li>
-        <li><b>Numero d'ordine:</b>{{ new_ticket_form.order_number }}</li>
+        <li><b>Priority:</b>{{ new_ticket_form.priority_id }}</li>
+        <li><b>Order number:</b>{{ new_ticket_form.order_number }}</li>
     </ul>
     
     <!-- Submit -->
     <input type="submit" class="btn btn-primary"></button>
 
 </form>
-
-<a href="{% url 'home' %}"><h5>Back</h5></a>
 
 {% endblock %}

@@ -2,24 +2,24 @@
 
 {% block content %}
 
-<h3>Tecnici</h3>
+<h3>Technicians</h3>
 
-<a href="{% url 'new_technician' %}" class="btn btn-info btn-lg"><h3>Crea tecnico</h3></a>
+<a href="{% url 'new_technician' %}" class="btn btn-info btn-lg"><h3>New technician</h3></a>
 
-<h4>Cerca per dipartimento</h4>
+<h4>Search department</h4>
 
 <!-- Search -->
-<h4>Cerca tra tutti i tecnici</h4>
-<input type="text" id="SearchInput" onkeyup="filterTable()" placeholder="Cerca su tutti i campi..." title="Type in a name">
+<h4>Search technician</h4>
+<input type="text" id="SearchInput" onkeyup="filterTable()" placeholder="Search..." title="Type in a name">
 
 <!-- Customer table ---->
 <table id="searchableTable" class="table table-responsive table-hover">
     <thead class="thead dark">
         <tr>
-            <th scope="col">Nome completo</th>
-            <th scope="col">Dipartimento</th>
-            <th scope="col">Telefono</th>
-            <th scope="col">Cellulare</th>
+            <th scope="col">Full name</th>
+            <th scope="col">Department</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Mobile</th>
             <th scope="col">Email</th>
             <th scope="col"><!--Modifica--></th>
             <th scope="col"><!--Cancella--></th>            

@@ -2,25 +2,25 @@
 
 {% block content %}
 
-<h3>Clienti</h3>
+<h3>Customers</h3>
 
-<a href="{% url 'new_customer' %}" class="btn btn-info btn-lg"><h3>Crea cliente</h3></a>
+<a href="{% url 'new_customer' %}" class="btn btn-info btn-lg"><h3>New customer</h3></a>
 
 <!-- Search -->
-<h4>Cerca tra tutti i clienti</h4>
+<h4>Search all customers</h4>
 <input type="text" id="SearchInput" onkeyup="filterTable()" placeholder="Cerca..." title="Type in a name">
 
-<h5>Filtra per contratti attivi</h5>
+<h5>Filter active contracts</h5>
 
 <!-- Customer table ---->
 <table id="searchableTable" class="table table-responsive table-hover">
     <thead class="thead dark">
         <tr>
-            <th scope="col">Cliente</th>
-            <th scope="col">Riferimento</th>
-            <th scope="col">Indirizzo</th>
-            <th scope="col">Telefono</th>
-            <th scope="col">Ticket aperti</th>
+            <th scope="col">Customer</th>
+            <th scope="col">Reference</th>
+            <th scope="col">Address</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Open tickets</th>
             <th scope="col"><!--Modifica--></th>
             <th scope="col"><!--Cancella--></th>            
         </tr>
@@ -47,7 +47,5 @@
         {% endfor %}
     </tbody>
 </table>
-
-<a href="{% url 'home' %}">Indietro</a>
 
 {% endblock %}

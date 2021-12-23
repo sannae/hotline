@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h3>Nuovo prodotto</h3>
+<h3>New product</h3>
 
 <form action="#" method="post">
 
@@ -11,16 +11,14 @@
 
     <!-- Model form -->
     <ul>
-        <li><b>Nome:</b>{{ new_product_form.name }}</li>
-        <li><b>Dipartimento:</b>{{ new_product_form.department_id }}</li>
-        <li><b>Descrizione:</b>{{ new_product_form.description }}</li>
+        <li><b>Full name:</b>{{ new_product_form.name }}</li>
+        <li><b>Department:</b>{{ new_product_form.department_id }}</li>
+        <li><b>Description:</b>{{ new_product_form.description }}</li>
     </ul>
     
     <!-- Submit -->
     <input type="submit" class="btn btn-primary"></button>
 
 </form>
-
-<a href="{% url 'home' %}"><h5>Back</h5></a>
 
 {% endblock %}

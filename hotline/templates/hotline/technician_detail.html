@@ -3,24 +3,18 @@
 
 {% block content %}
 
-<a href="{% url 'technician_list' %}">Tutti i tecnici</a>
+<a href="{% url 'technician_list' %}">All technicians</a>
 
 <h2>{{ my_technician.first_name }} {{ my_technician.last_name }}</h2>
 
-<a href="#">Cancella tecnico</a>
-
-<h5>Dettagli</h5>
+<h5>Details</h5>
 <ul>
-    <li><b>Nome:</b> {{ my_technician.first_name }}</li>
-    <li><b>Cognome:</b> {{ my_technician.last_name }}</li>
     <li><b>E-mail:</b> {{ my_technician.email }}</li>
-    <li><b>Telefono:</b> {{ my_technician.office_phone }}</li>
-    <li><b>Cellulare:</b> {{ my_technician.mobile_phone }}</li>
+    <li><b>Phone:</b> {{ my_technician.office_phone }}</li>
+    <li><b>Mobile:</b> {{ my_technician.mobile_phone }}</li>
 </ul>
 
-<h3>Ultimi ticket di {{ my_technician.first_name }}</h3>
+<h3>Last ticket handled by {{ my_technician.first_name }}</h3>
 {% include 'hotline/ticket_table.html' %}
-
-<a href="{% url 'home' %}">Indietro</a>
 
 {% endblock %}

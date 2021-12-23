@@ -3,20 +3,20 @@
 
 {% block content %}
 
-<a href="{% url 'customer_list' %}">Tutti i clienti</a>
+<a href="{% url 'customer_list' %}">All customers</a>
 
 <h3>Logo</h3>
 
-<a href="#">Modifica cliente</a> <a href="#">Cancella cliente</a>
+<a href="#">Edit</a> <a href="#">Delete</a>
 
 <h1>{{ my_customer.name }}</h1>
 <ul>
-    <li><b>Riferimento:</b> {{ my_customer.reference }} {{ my_customer.phone }} {{ my_customer.email }}</li>
-    <li><b>Indirizzo:</b> {{ my_customer.address }}</li>
-    <li><b>Telefono:</b> {{ my_customer.phone }}</li>
+    <li><b>Reference:</b> {{ my_customer.reference }} {{ my_customer.phone }} {{ my_customer.email }}</li>
+    <li><b>Address:</b> {{ my_customer.address }}</li>
+    <li><b>Phone:</b> {{ my_customer.phone }}</li>
 </ul>
 
-<h2>Contratti attivi al {{ current_year }}:
+<h2>Active contracts in {{ current_year }}:
     {% if my_customer.sw_contract == True %}
     <span class="badge bg-primary">SW</span>
     {% endif %}
@@ -24,20 +24,18 @@
     <span class="badge bg-secondary">HW</span>
     {% endif %}
 </h2>
-<h6><a href="#">Storico contratti</a></h6>
+<h6><a href="#">Past contracts</a></h6>
 
-<h5>Licenza</h5>
+<h5><a href="#">License</a></h5>
 
-<h5>Risorse</h5>
-<h6>VPN e collegamenti</h6>
+<h5>Resources</h5>
+<h6>VPN and connections</h6>
 
-<h3>Ultimi ticket</h3>
+<h3>Last tickets</h3>
 {% include 'hotline/ticket_table.html' %}
 
-<h3>Progetti in corso</h3>
+<h3>Operational projects</h3>
 
-<h3>Commesse di sviluppo</h3>
-
-<a href="{% url 'home' %}">Indietro</a>
+<h3>Development projects</h3>
 
 {% endblock %}

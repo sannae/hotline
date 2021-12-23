@@ -14,11 +14,13 @@ all_products = product.objects.all()
 # Home page
 def dashboard(request):
     tickets = all_tickets.order_by('-updated_at')
+    current_year = datetime.now().year
 
     context = {
         'tickets': tickets,
         'customers': all_customers,
-        'technicians': all_technicians
+        'technicians': all_technicians,
+        'current_year': current_year
     }
 
     return render(request, 'hotline/dashboard.html', context)

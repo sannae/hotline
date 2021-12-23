@@ -3,23 +3,22 @@
 
 {% block content %}
 
-<a href="#">Tutti i ticket</a>
+<a href="#">All tickets</a>
 
 <br>
 
 <!-- Header -->
-<h2>{{ my_ticket.title }}</h2>
-<h4>per <a href="{% url 'customer_detail' my_ticket.customer_id.id %}">{{ my_ticket.customer_id }}</a></h4>
-<h5>Intervento effettuato da <a href="{% url 'technician_detail' my_ticket.technician_id.id %}">{{ my_ticket.technician_id.first_name }} {{ my_ticket.technician_id.last_name }}</a></h5>
+<h2>{{ my_ticket.title }} <span class="badge rounded-pill {{my_ticket.status_id.color}}">{{my_ticket.status_id}}</span> </h2>
+<h4>for <a href="{% url 'customer_detail' my_ticket.customer_id.id %}">{{ my_ticket.customer_id }}</a></h4>
+<h5>Performed by <a href="{% url 'technician_detail' my_ticket.technician_id.id %}">{{ my_ticket.technician_id.first_name }} {{ my_ticket.technician_id.last_name }}</a></h5>
 
 <!-- Details -->
-<p><b>Durata:</b> {{ my_ticket.duration }} minuti</p> 
-<p style="color: {{my_ticket.status_id.color}};">{{ my_ticket.status_id }}</p>
+<p><b>Duration:</b> {{ my_ticket.duration }} minutes</p> 
 
-<h6>Dettagli:</h6>
+<h6>Details:</h6>
 <p>{{ my_ticket.notes }}</p>
 
-<h6>Prodotti:</h6>
+<h6>Products:</h6>
 {% for product in my_ticket.products.all %}
     <p><span class="badge rounded-pill bg-secondary">{{ product.department_id }}</span> <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a></p>
 {% endfor %}

@@ -7,13 +7,13 @@
 <table id="searchableTable" class="table table-responsive table-hover">
     <thead class="thead dark">
         <tr>
-            <th scope="col">Titolo</th>
-            <th scope="col">Cliente</th>
-            <th scope="col">Ultimo aggiornamento</th>
-            <th scope="col">Tecnico</th>
-            <th scope="col">Durata [min]</th>
-            <th scope="col">Stato</th>
-            <th scope="col">Priorità</th>
+            <th scope="col">Title</th>
+            <th scope="col">Customer</th>
+            <th scope="col">Last update</th>
+            <th scope="col">Technician</th>
+            <th scope="col">Duration [mins]</th>
+            <th scope="col">Status</th>
+            <th scope="col">Priority</th>
             <th scope="col"><!--Modifica--></th>
             <th scope="col"><!--Cancella--></th>            
         </tr>
@@ -24,17 +24,17 @@
             <td><a href="{% url 'ticket_detail' ticket.id %}"><b>{{ticket.title}}</b></a></td>
             <td><a href="{% url 'customer_detail' ticket.customer_id.id %}">{{ticket.customer_id}}</a>
                 {% if ticket.customer_id.sw_contract == True %}
-                <span class="badge rounded-pill bg-primary">SW</span>
+                <span class="badge rounded-pill bg-primary" data-bs-toogle="tooltip" data-bs-placement="top" title="SOFTWARE maintenance contract for {{current_year}}">SW</span>
                 {% endif %}
                 {% if ticket.customer_id.hw_contract == True %}
-                <span class="badge rounded-pill bg-secondary">HW</span>
+                <span class="badge rounded-pill bg-secondary" data-bs-toogle="tooltip" data-bs-placement="top" title="HARDWARE maintenance contract for {{current_year}}">HW</span>
                 {% endif %}
             </td>
             <td>{{ticket.updated_at|date:"d-m-Y H:m"}}</td>
             <td><a href="{% url 'technician_detail' ticket.technician_id.id %}">
                 {{ticket.technician_id}}</a></td>
             <td>{{ticket.duration}}</td>
-            <td>{{ticket.status_id}}</td>
+            <td><span class="badge rounded-pill {{ticket.status_id.color}}">{{ticket.status_id}}</span></td>
             <td>{{ticket.priority_id}}</td>
             <td><a href="#"><span class="btn btn-warning"><i class="bi bi-pen"></i></span></a></td>
             <td><a href="#"><span class="btn btn-danger"><i class="bi bi-trash"></i></span></a></td>

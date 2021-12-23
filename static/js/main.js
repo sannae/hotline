@@ -1,3 +1,5 @@
+/* Filter table */
+
 // https://www.codegrepper.com/code-examples/html/html+filter+table+multiple+columns
 function filterTable() {
     // Declare variables
@@ -28,3 +30,10 @@ function filterTable() {
     }
   }
 }
+
+/* Initialize Bootstrap tooltips */
+
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+})

@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h3>Nuovo cliente</h3>
+<h3>New cliente</h3>
 
 <form action="#" method="post">
 
@@ -10,18 +10,18 @@
     {% csrf_token %}
 
     <!-- Model form -->
-    <h6><b>Dettagli cliente:</b></h6>
+    <h6><b>Details:</b></h6>
     <ul>
-        <li><b>Ragione sociale:</b>{{ new_customer_form.name }}</li>
-        <li><b>Indirizzo:</b>{{ new_customer_form.address }}</li>
-        <li><b>Telefono:</b>{{ new_customer_form.phone }}</li>
-        <li><b>Contratto SW:</b>{{ new_customer_form.sw_contract }}</li>
-        <li><b>Contratto HW:</b>{{ new_customer_form.hw_contract }}</li>
+        <li><b>Full name:</b>{{ new_customer_form.name }}</li>
+        <li><b>Address:</b>{{ new_customer_form.address }}</li>
+        <li><b>Phone:</b>{{ new_customer_form.phone }}</li>
+        <li><b>Software maintenance contract:</b>{{ new_customer_form.sw_contract }}</li>
+        <li><b>Hardware maintenance contract:</b>{{ new_customer_form.hw_contract }}</li>
     </ul>
-    <h6><b>Dettagli riferimento:</b></h6>
+    <h6><b>Reference:</b></h6>
     <ul>
-        <li><b>Nome:</b>{{ new_customer_form.reference }}</li>
-        <li><b>Telefono:</b>{{ new_customer_form.reference_phone }}</li>
+        <li><b>Full Name:</b>{{ new_customer_form.reference }}</li>
+        <li><b>Phone:</b>{{ new_customer_form.reference_phone }}</li>
         <li><b>Email:</b>{{ new_customer_form.reference_email }}</li>
     </ul>
     
