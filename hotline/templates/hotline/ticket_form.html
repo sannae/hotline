@@ -1,0 +1,35 @@
+{% extends 'hotline/home.html' %}
+
+{% block content %}
+
+{% if current_view == 'new_ticket' %}
+<h3>New ticket</h3>
+{% elif current_view == 'update_ticket' %}
+<h3>Edit ticket</h3>
+{% endif %}
+
+
+<form action="#" method="post">
+
+    <!-- Security token -->
+    {% csrf_token %}
+
+    <!-- Model form -->
+    <ul>
+        <li><b>Customer:</b>{{ ticket_form.customer_id }}</li>
+        <li><b>Technician:</b>{{ ticket_form.technician_id }}</li>
+        <li><b>Products:</b>{{ ticket_form.products }}</li>
+        <li><b>Title:</b>{{ ticket_form.title }}</li>
+        <li><b>Description:</b>{{ ticket_form.notes }}</li>
+        <li><b>Duration:</b>{{ ticket_form.duration }}</li>
+        <li><b>Status:</b>{{ ticket_form.status_id }}</li>
+        <li><b>Priority:</b>{{ ticket_form.priority_id }}</li>
+        <li><b>Order number:</b>{{ ticket_form.order_number }}</li>
+    </ul>
+    
+    <!-- Submit -->
+    <input type="submit" class="btn btn-primary"></button>
+
+</form>
+
+{% endblock %}

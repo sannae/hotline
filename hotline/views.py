@@ -38,9 +38,25 @@ def new_ticket(request):
             return redirect('/')
 
     context = {
-        'new_ticket_form': form
+        'ticket_form': form,
+        'current_view': request.resolver_match.url_name
     }
-    return render(request, 'hotline/new_ticket.html', context)  
+    return render(request, 'hotline/ticket_form.html', context)  
+
+# Update ticket
+def update_ticket(request, pk):
+    ticket = all_tickets.get(id=pk)
+    form = ticketForm(instance=ticket)
+    if request.method == "POST":
+        form = ticketForm(request.POST, instance=ticket)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    context = {
+        'ticket_form': form,
+        'current_view': request.resolver_match.url_name
+    }
+    return render(request, 'hotline/ticket_form.html', context)
 
 # Ticket detail page
 def ticket_detail(request, pk):
@@ -82,9 +98,25 @@ def new_customer(request):
             return redirect('/')
 
     context = {
-        'new_customer_form': form
+        'customer_form': form,
+        'current_view': request.resolver_match.url_name
     }
-    return render(request, 'hotline/new_customer.html', context)  
+    return render(request, 'hotline/customer_form.html', context)  
+
+# Update ticket
+def update_customer(request, pk):
+    customer = all_customers.get(id=pk)
+    form = customerForm(instance=customer)
+    if request.method == "POST":
+        form = customerForm(request.POST, instance=customer)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    context = {
+        'customer_form': form,
+        'current_view': request.resolver_match.url_name
+    }
+    return render(request, 'hotline/customer_form.html', context)
 
 # --- Technicians ---
 

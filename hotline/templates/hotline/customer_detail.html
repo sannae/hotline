@@ -7,11 +7,11 @@
 
 <h3>Logo</h3>
 
-<a href="#">Edit</a> <a href="#">Delete</a>
+<a href="{% url 'update_customer' my_customer.id %}"><span class="btn btn-warning"><i class="bi bi-pen"></i></span></a> <a href="#">Delete</a>
 
 <h1>{{ my_customer.name }}</h1>
 <ul>
-    <li><b>Reference:</b> {{ my_customer.reference }} {{ my_customer.phone }} {{ my_customer.email }}</li>
+    <li><b>Reference:</b> {{ my_customer.reference }} ( {{ my_customer.reference_phone }} ) ( {{ my_customer.reference_email }} )</li>
     <li><b>Address:</b> {{ my_customer.address }}</li>
     <li><b>Phone:</b> {{ my_customer.phone }}</li>
 </ul>

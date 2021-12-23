@@ -1,0 +1,38 @@
+{% extends 'hotline/home.html' %}
+
+{% block content %}
+
+{% if current_view == 'new_customer' %}
+<h3>New customer</h3>
+{% elif current_view == 'update_customer' %}
+<h3>Edit customer</h3>
+{% endif %}
+
+<form action="#" method="post">
+
+    <!-- Security token -->
+    {% csrf_token %}
+
+    <!-- Model form -->
+    <h6><b>Details:</b></h6>
+    <ul>
+        <li><b>Full name:</b>{{ customer_form.name }}</li>
+        <li><b>Address:</b>{{ customer_form.address }}</li>
+        <li><b>Phone:</b>{{ customer_form.phone }}</li>
+        <li><b>Software maintenance contract:</b>{{ customer_form.sw_contract }}</li>
+        <li><b>Hardware maintenance contract:</b>{{ customer_form.hw_contract }}</li>
+    </ul>
+    <h6><b>Reference:</b></h6>
+    <ul>
+        <li><b>Full Name:</b>{{ customer_form.reference }}</li>
+        <li><b>Phone:</b>{{ customer_form.reference_phone }}</li>
+        <li><b>Email:</b>{{ customer_form.reference_email }}</li>
+    </ul>
+    
+    <!-- Submit -->
+    <input type="submit" class="btn btn-primary"></button>
+
+</form>
+
+
+{% endblock %}

@@ -40,7 +40,7 @@
             <td>{{customer.address}}</td>
             <td>{{customer.phone}}</td>
             <td>{{customer.ticket_set.count}}</td>
-            <td><span class="btn btn-warning"><i class="bi bi-pen"></i></span></td>
+            <td><a href="{% url 'update_customer' customer.id %}"><span class="btn btn-warning"><i class="bi bi-pen"></i></span></a></td>
             <td><span class="btn btn-danger"><i class="bi bi-trash"></i></span></td>
             <td></td>
         </tr>

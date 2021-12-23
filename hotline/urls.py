@@ -10,12 +10,14 @@ urlpatterns = [
 
     path('new_ticket/', views.new_ticket, name='new_ticket'),
     path('ticket/<str:pk>', views.ticket_detail, name="ticket_detail"),
+    path('update_ticket/<str:pk>', views.update_ticket, name="update_ticket"),
 
     # --- Customers ---
 
     path('new_customer/', views.new_customer, name='new_customer'),
     path('customer/<str:pk>', views.customer_detail, name="customer_detail"),
     path('customer_list', views.customer_list, name="customer_list"),
+    path('update_customer/<str:pk>', views.update_customer, name="update_customer"),
 
     # --- Technicians ---
 

@@ -12,6 +12,8 @@
 <h4>for <a href="{% url 'customer_detail' my_ticket.customer_id.id %}">{{ my_ticket.customer_id }}</a></h4>
 <h5>Performed by <a href="{% url 'technician_detail' my_ticket.technician_id.id %}">{{ my_ticket.technician_id.first_name }} {{ my_ticket.technician_id.last_name }}</a></h5>
 
+<h3><a href="{% url 'update_ticket' my_ticket.id %}"><span class="btn btn-warning"><i class="bi bi-pen"></i></span></a></h3>
+
 <!-- Details -->
 <p><b>Duration:</b> {{ my_ticket.duration }} minutes</p> 
 
