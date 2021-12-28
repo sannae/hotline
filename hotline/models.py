@@ -17,7 +17,7 @@ class ticket(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     order_number = models.IntegerField(null=True, blank=True)
     def __str__(self):
-        return self.customer_id.name + ' (' + self.technician_id.last_name + ')'
+        return self.title.upper() + ' for ' + self.customer_id.name.upper() + ' by ' + self.technician_id.last_name.upper()
 
 class technician(models.Model):
     # id = models.IntegerField(primary_key=True)
