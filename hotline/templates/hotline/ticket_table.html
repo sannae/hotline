@@ -37,7 +37,7 @@
             <td><span class="badge rounded-pill {{ticket.status_id.color}}">{{ticket.status_id}}</span></td>
             <td>{{ticket.priority_id}}</td>
             <td><a href="{% url 'update_ticket' ticket.id %}"><span class="btn btn-warning"><i class="bi bi-pen"></i></span></a></td>
-            <td><a href="#"><span class="btn btn-danger"><i class="bi bi-trash"></i></span></a></td>
+            <td><a href="{% url 'delete_ticket' ticket.id %}"><span class="btn btn-danger"><i class="bi bi-trash"></i></span></a></td>
         </tr>
         {% endfor %}
     </tbody>

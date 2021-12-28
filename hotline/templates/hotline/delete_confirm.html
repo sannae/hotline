@@ -1,0 +1,31 @@
+<!-- Just a confirmation page -->
+
+{% extends 'hotline/home.html' %}
+{% load static %}
+
+{% block content %}
+
+<br>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card card-body">
+
+            <p>Are you sure you want to delete "{{ ticket }}" ?</p>
+
+            <form action="{% url 'delete_ticket' ticket.id %}" method="POST">
+
+                {% csrf_token %}
+
+                <!-- Nevermind, cancel and go back -->
+                <a class="btn btn-warning" href="{% url 'home' %}">Cancel</a>
+                <!-- Confirm -->
+                <input class="btn btn-danger" type="submit" name="Confirm">
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
