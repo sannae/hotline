@@ -7,6 +7,8 @@
 
 <h2>{{ my_technician.first_name }} {{ my_technician.last_name }}</h2>
 
+<a href="{% url 'update_technician' my_technician.id %}"><span class="btn btn-warning"><i class="bi bi-pen"></i></span></a> <a href="#">Delete</a>
+
 <h5>Details</h5>
 <ul>
     <li><b>E-mail:</b> {{ my_technician.email }}</li>

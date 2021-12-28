@@ -1,0 +1,31 @@
+{% extends 'hotline/home.html' %}
+
+{% block content %}
+
+{% if current_view == 'new_technician' %}
+<h3>New technician</h3>
+{% elif current_view == 'update_technician' %}
+<h3>Edit technician</h3>
+{% endif %}
+
+<form action="#" method="post">
+
+    <!-- Security token -->
+    {% csrf_token %}
+
+    <!-- Model form -->
+    <ul>
+        <li><b>First name:</b>{{ technician_form.first_name }}</li>
+        <li><b>Last name:</b>{{ technician_form.last_name }}</li>
+        <li><b>Phone:</b>{{ technician_form.office_phone }}</li>
+        <li><b>Mobile:</b>{{ technician_form.mobile_phone }}</li>
+        <li><b>Email:</b>{{ technician_form.email }}</li>
+        <li><b>Department:</b>{{ technician_form.department_id }}</li>
+    </ul>
+    
+    <!-- Submit -->
+    <input type="submit" class="btn btn-primary"></button>
+
+</form>
+
+{% endblock %}

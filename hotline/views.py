@@ -148,9 +148,24 @@ def new_technician(request):
             return redirect('/')
 
     context = {
-        'new_technician_form': form
+        'technician_form': form
     }
-    return render(request, 'hotline/new_technician.html', context)  
+    return render(request, 'hotline/technician_form.html', context)  
+
+# Update ticket
+def update_technician(request, pk):
+    technician = all_technicians.get(id=pk)
+    form = technicianForm(instance=technician)
+    if request.method == "POST":
+        form = technicianForm(request.POST, instance=technician)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    context = {
+        'technician_form': form,
+        'current_view': request.resolver_match.url_name
+    }
+    return render(request, 'hotline/technician_form.html', context)
 
 # --- Products ---
 

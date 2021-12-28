@@ -24,6 +24,7 @@ urlpatterns = [
     path('new_technician/', views.new_technician, name='new_technician'),
     path('technician/<str:pk>', views.technician_detail, name="technician_detail"),
     path('technician_list', views.technician_list, name="technician_list"),
+    path('update_technician/<str:pk>', views.update_technician, name="update_technician"),
 
     # --- Products ---
 
