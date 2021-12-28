@@ -14,8 +14,12 @@
             <th scope="col">Duration [mins]</th>
             <th scope="col">Status</th>
             <th scope="col">Priority</th>
-            <th scope="col"><!--Modifica--></th>
-            <th scope="col"><!--Cancella--></th>            
+            <th scope="col">
+                <!--Modifica-->
+            </th>
+            <th scope="col">
+                <!--Cancella-->
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -24,21 +28,41 @@
             <td><a href="{% url 'ticket_detail' ticket.id %}"><b>{{ticket.title}}</b></a></td>
             <td><a href="{% url 'customer_detail' ticket.customer_id.id %}">{{ticket.customer_id}}</a>
                 {% if ticket.customer_id.sw_contract == True %}
-                <span class="badge rounded-pill bg-primary" data-bs-toogle="tooltip" data-bs-placement="top" title="SOFTWARE maintenance contract for {{current_year}}">SW</span>
+                <span class="badge rounded-pill bg-primary" data-bs-toogle="tooltip" data-bs-placement="top"
+                    title="SOFTWARE maintenance contract for {{current_year}}">SW</span>
                 {% endif %}
                 {% if ticket.customer_id.hw_contract == True %}
-                <span class="badge rounded-pill bg-secondary" data-bs-toogle="tooltip" data-bs-placement="top" title="HARDWARE maintenance contract for {{current_year}}">HW</span>
+                <span class="badge rounded-pill bg-secondary" data-bs-toogle="tooltip" data-bs-placement="top"
+                    title="HARDWARE maintenance contract for {{current_year}}">HW</span>
                 {% endif %}
             </td>
             <td>{{ticket.updated_at|date:"d-m-Y H:m"}}</td>
             <td><a href="{% url 'technician_detail' ticket.technician_id.id %}">
-                {{ticket.technician_id}}</a></td>
+                    {{ticket.technician_id}}</a></td>
             <td>{{ticket.duration}}</td>
             <td><span class="badge rounded-pill {{ticket.status_id.color}}">{{ticket.status_id}}</span></td>
             <td>{{ticket.priority_id}}</td>
-            <td><a href="{% url 'update_ticket' ticket.id %}"><span class="btn btn-warning"><i class="bi bi-pen"></i></span></a></td>
-            <td><a href="{% url 'delete_ticket' ticket.id %}"><span class="btn btn-danger"><i class="bi bi-trash"></i></span></a></td>
+            <td><a href="{% url 'update_ticket' ticket.id %}"><span class="btn btn-warning"><i
+                            class="bi bi-pen"></i></span></a></td>
+            <td><span class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"><i
+                        class="bi bi-trash"></i></span></td>
         </tr>
+
+        <!-- Delete Modal -->
+        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <p>Are you sure you want to delete ticket <b>{{ticket.title}}</b> for <b>{{ticket.customer_id}}</b> by <b>{{ticket.technician_id}}</b> ?</p>
+
+                    <form action="{% url 'delete_ticket' ticket.id %}" method="POST">
+                        {% csrf_token %}
+                        <button class="btn btn-warning"><a  data-bs-dismiss="modal" href="{% url 'home' %}">No, leave</a></button>
+                        <button type="submit" class="btn btn-danger">Yes, proceed</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
         {% endfor %}
     </tbody>
 </table>
