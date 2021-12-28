@@ -6,8 +6,8 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <p>Are you sure you want to delete {{object}} ?</p>
-
-                    <form action="{% url 'delete_ticket' ticket.id %}" method="POST">
+                    <!-- TODO: Still working only on tickets, generalize delete form -->
+                    <form action="{% url 'delete' object.id %}" method="POST">
                         {% csrf_token %}
                         <button class="btn btn-warning"><a  data-bs-dismiss="modal" href="{% url 'home' %}">No, leave</a></button>
                         <button type="submit" class="btn btn-danger">Yes, proceed</button>

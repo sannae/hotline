@@ -66,19 +66,23 @@ def ticket_detail(request, pk):
     }
     return render(request, 'hotline/ticket_detail.html', context)
 
-def delete_ticket(request, pk):
+def delete(request, pk):
 
-    # Order to be deleted
-    ticket = all_tickets.get(id=pk)
+    # TODO: Do *not* depend on the object, here instantiated explicitely
+    obj = "ticket"
+
+    # Object to be deleted
+    app_models = apps.all_models['hotline']
+    selectedModel = app_models.get(obj)
+    object = selectedModel.objects.get(id=pk)
 
     # Actual deletion
     if request.method == "POST":
-        ticket.delete()
+        object.delete()
         # Go back to home
         return redirect('/')
 
     context = {
-        'ticket':ticket 
     }
 
     return render(request, 'hotline/delete_confirm.html', context)
