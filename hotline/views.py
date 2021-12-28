@@ -148,11 +148,12 @@ def new_technician(request):
             return redirect('/')
 
     context = {
-        'technician_form': form
+        'technician_form': form,
+        'current_view': request.resolver_match.url_name
     }
     return render(request, 'hotline/technician_form.html', context)  
 
-# Update ticket
+# Update technician
 def update_technician(request, pk):
     technician = all_technicians.get(id=pk)
     form = technicianForm(instance=technician)
@@ -195,6 +196,22 @@ def new_product(request):
             return redirect('/')
 
     context = {
-        'new_product_form': form
+        'product_form': form,
+        'current_view': request.resolver_match.url_name
     }
-    return render(request, 'hotline/new_product.html', context)  
+    return render(request, 'hotline/product_form.html', context)
+
+# Update product
+def update_product(request, pk):
+    product = all_products.get(id=pk)
+    form = productForm(instance=product)
+    if request.method == "POST":
+        form = productForm(request.POST, instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    context = {
+        'product_form': form,
+        'current_view': request.resolver_match.url_name
+    }
+    return render(request, 'hotline/product_form.html', context)

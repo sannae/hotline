@@ -2,7 +2,11 @@
 
 {% block content %}
 
+{% if current_view == 'new_product' %}
 <h3>New product</h3>
+{% elif current_view == 'update_product' %}
+<h3>Edit product</h3>
+{% endif %}
 
 <form action="#" method="post">
 
@@ -11,9 +15,9 @@
 
     <!-- Model form -->
     <ul>
-        <li><b>Full name:</b>{{ new_product_form.name }}</li>
-        <li><b>Department:</b>{{ new_product_form.department_id }}</li>
-        <li><b>Description:</b>{{ new_product_form.description }}</li>
+        <li><b>Full name:</b>{{ product_form.name }}</li>
+        <li><b>Department:</b>{{ product_form.department_id }}</li>
+        <li><b>Description:</b>{{ product_form.description }}</li>
     </ul>
     
     <!-- Submit -->

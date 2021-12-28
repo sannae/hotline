@@ -7,7 +7,7 @@
 
 <h3>Logo</h3>
 
-<a href="#">Edit</a> <a href="#">Delete</a>
+<a href="{% url 'update_product' my_product.id %}"><span class="btn btn-warning"><i class="bi bi-pen"></i></span></a> <a href="#">Delete</a>
 
 <h1>{{ my_product.name }}</h1>
 <br>
