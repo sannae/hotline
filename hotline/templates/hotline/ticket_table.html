@@ -1,29 +1,29 @@
 <!-- Ticket table ---->
+<div class="ticket-table table-responsive">
+    <!-- Search -->
+    <input type="text" id="SearchInput" onkeyup="filterTable()" placeholder="Search..." title="Type in a name">
 
-<!-- Search -->
-<input type="text" id="SearchInput" onkeyup="filterTable()" placeholder="Search..." title="Type in a name">
-
-<!-- Table -->
-<table id="searchableTable" class="table table-responsive table-hover">
-    <thead class="thead dark">
-        <tr>
-            <th scope="col">Title</th>
-            <th scope="col">Customer</th>
-            <th scope="col">Last update</th>
-            <th scope="col">Technician</th>
-            <th scope="col">Duration [mins]</th>
-            <th scope="col">Status</th>
-            <th scope="col">Priority</th>
-            <th scope="col">
-                <!--Modifica-->
-            </th>
-            <th scope="col">
-                <!--Cancella-->
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        {% if tickets %}
+    <!-- Table -->
+    <table id="searchableTable" class="table table-hover">
+        <thead class="thead dark">
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Customer</th>
+                <th scope="col">Last update</th>
+                <th scope="col">Technician</th>
+                <th scope="col">Duration [mins]</th>
+                <th scope="col">Status</th>
+                <th scope="col">Priority</th>
+                <th scope="col">
+                    <!--Modifica-->
+                </th>
+                <th scope="col">
+                    <!--Cancella-->
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if tickets %}
             {% for ticket in tickets %}
             <tr>
                 <td><a href="{% url 'ticket_detail' ticket.id %}"><b>{{ticket.title}}</b></a></td>
@@ -42,7 +42,8 @@
                         {{ticket.technician_id}}</a></td>
                 <td>{{ticket.duration}}</td>
                 <td><span class="badge rounded-pill"
-                        style="background-color: {{ ticket.status_id.color }} !important;">{{ticket.status_id}}</span></td>
+                        style="background-color: {{ ticket.status_id.color }} !important;">{{ticket.status_id}}</span>
+                </td>
                 <td>
                     <span class="bi bi-star-fill">{{ ticket.priority }}</span>
                 </td>
@@ -56,9 +57,10 @@
 
             {% endfor %}
 
-        {% else %}
-        <tr style="color: grey;">No tickets</tr>
-        {% endif %}
+            {% else %}
+            <tr style="color: grey;">No tickets</tr>
+            {% endif %}
 
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</div>

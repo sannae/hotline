@@ -2,7 +2,7 @@
 <script>
 
     // Setup
-    const data = {
+    const pie_data = {
         labels: {{ status_list | safe }},
     datasets: [{
         data: {{ total_tickets_by_status | safe }},
@@ -13,14 +13,14 @@
         };
 
     // Config
-    const config = {
+    const pie_config = {
         type: 'doughnut',
-        data: data,
+        data: pie_data,
         options: {
             responsive: true,
             legend: {
                 display: true,
-                position: 'bottom',
+                position: 'right',
                 labels: {
                     fontColor: "black",
                     fontSize: 12
@@ -35,14 +35,93 @@
     };
 
     // Chart
-    var myPieChart = new Chart(
+    var ticketPieChart = new Chart(
         document.getElementById('ticketPieChart'),
-        config
+        pie_config
     );
 
 </script>
 
 <!-- Line chart -->
 <script>
-    
+    // Setup
+    const labels = ['jan','feb','mar','apr','may'];
+const line_data = {
+  labels: labels,
+  datasets: [{
+    label: 'My First Dataset',
+    data: [65, 59, 80, 81, 56],
+    fill: false,
+    borderColor: 'rgb(75, 192, 192)',
+    tension: 0.1
+  }]
+};
+
+//Config
+const line_config = {
+  type: 'line',
+  data: line_data,
+  options: {
+      responsive: true
+  }
+};
+
+    // Chart
+    var LineChart = new Chart(
+        document.getElementById('LineChart'),
+        line_config
+    );
+</script>
+
+<script>
+    //Setup
+    const radar_data = {
+  labels: [
+    'Eating',
+    'Drinking',
+    'Sleeping',
+    'Designing',
+    'Coding',
+    'Cycling',
+    'Running'
+  ],
+  datasets: [{
+    label: 'My First Dataset',
+    data: [65, 59, 90, 81, 56, 55, 40],
+    fill: true,
+    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+    borderColor: 'rgb(255, 99, 132)',
+    pointBackgroundColor: 'rgb(255, 99, 132)',
+    pointBorderColor: '#fff',
+    pointHoverBackgroundColor: '#fff',
+    pointHoverBorderColor: 'rgb(255, 99, 132)'
+  }, {
+    label: 'My Second Dataset',
+    data: [28, 48, 40, 19, 96, 27, 100],
+    fill: true,
+    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+    borderColor: 'rgb(54, 162, 235)',
+    pointBackgroundColor: 'rgb(54, 162, 235)',
+    pointBorderColor: '#fff',
+    pointHoverBackgroundColor: '#fff',
+    pointHoverBorderColor: 'rgb(54, 162, 235)'
+  }]
+};
+    //Config
+    const radar_config = {
+  type: 'radar',
+  data: radar_data,
+  options: {
+    elements: {
+      line: {
+        borderWidth: 3
+      }
+    }
+  },
+};
+    // Chart
+    var RadarChart = new Chart(
+        document.getElementById('RadarChart'),
+        radar_config
+    );
 </script>
