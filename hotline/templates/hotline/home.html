@@ -28,7 +28,6 @@
 
     <!-- Navigation bar -->
     {% include 'hotline/navbar.html' %}
-
     <!-- Content block used by Django -->
     {% block content %}
     {% endblock %}
@@ -42,8 +41,11 @@
 <!-- Popper JS -->
 <script src="https://unpkg.com/@popperjs/core@2"></script>
 
+<!-- ChartJS -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4"></script>
 <!-- Static JS -->
 <script src="{% static '/js/main.js' %}"></script>
 
+{% include 'hotline/charts.html' %}
 
 </html>

@@ -4,6 +4,14 @@ from django.db.models.fields.related import ForeignKey
 
 # A ticket is an element of support activity
 class ticket(models.Model):
+
+    PRIORITY_LEVELS = [
+        ('1','low'),
+        ('2','medium'),
+        ('3','high'),
+        ('4','urgent')
+    ]
+
     # id = models.IntegerField(primary_key=True)
     customer_id = models.ForeignKey('customer', on_delete=models.PROTECT)
     technician_id = models.ForeignKey('technician', on_delete=models.PROTECT)
@@ -13,7 +21,7 @@ class ticket(models.Model):
     notes = models.TextField(blank=True)
     duration = models.IntegerField()
     status_id = models.ForeignKey('status', default='1', on_delete=models.PROTECT)
-    priority_id = models.ForeignKey('priority', default='1', on_delete=models.PROTECT)
+    priority = models.CharField(max_length=10, default='low', choices=PRIORITY_LEVELS, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     order_number = models.IntegerField(null=True, blank=True)
     def __str__(self):
@@ -70,20 +78,5 @@ class status(models.Model):
     # id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=50, default='pending')
     color = models.CharField(max_length=50, default='red', choices=STATUS_COLORS)
-    def __str__(self):
-        return self.name
-
-class priority(models.Model):
-
-    PRIORITY_COLORS = [
-        ('red', 'Red'),
-        ('orange', 'Orange'),
-        ('yellow', 'Yellow'),
-        ('green', 'Green'),
-    ]
-
-    # id = models.IntegerField(primary_key=True)
-    name = models.CharField(max_length=50, default='low')
-    color = models.CharField(max_length=50, default='green', choices=PRIORITY_COLORS)
     def __str__(self):
         return self.name

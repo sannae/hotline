@@ -1,7 +1,7 @@
 <!-- Ticket table ---->
 
 <!-- Search -->
-<input type="text" id="SearchInput" onkeyup="filterTable()" placeholder="Cerca..." title="Type in a name">
+<input type="text" id="SearchInput" onkeyup="filterTable()" placeholder="Search..." title="Type in a name">
 
 <!-- Table -->
 <table id="searchableTable" class="table table-responsive table-hover">
@@ -41,7 +41,11 @@
                     {{ticket.technician_id}}</a></td>
             <td>{{ticket.duration}}</td>
             <td><span class="badge rounded-pill {{ticket.status_id.color}}">{{ticket.status_id}}</span></td>
-            <td>{{ticket.priority_id}}</td>
+            <td>
+                {% for level in ticket.priority %}
+                    <span class="bi bi-star-fill"></span>
+                {% endfor %}
+            </td>
             <td><a href="{% url 'update_ticket' ticket.id %}"><span class="btn btn-warning"><i
                             class="bi bi-pen"></i></span></a></td>
             <td><span class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"><i

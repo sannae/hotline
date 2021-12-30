@@ -1,0 +1,43 @@
+<!-- Pie chart -->
+<script>
+
+    // Setup
+    const data = {
+        labels: {{ status_list | safe }},
+    datasets: [{
+        data: {{ total_tickets_by_status | safe }},
+        backgroundColor: {{ status_colors | safe }},
+        borderColor: '#FFF',
+        hoverOffset: 4,
+            }]
+        };
+
+    // Config
+    const config = {
+        type: 'doughnut',
+        data: data,
+        options: {
+            responsive: true,
+            legend: {
+                display: true,
+                position: 'bottom',
+                labels: {
+                    fontColor: "black",
+                    fontSize: 12
+                }
+            },
+            elements: {
+                arc: {
+                    borderWidth: 0
+                }
+            }
+        }
+    };
+
+    // Chart
+    var myPieChart = new Chart(
+        document.getElementById('ticketPieChart'),
+        config
+    );
+
+</script>

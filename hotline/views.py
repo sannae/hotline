@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from .models import *
 from .forms import *
+import random
 from datetime import datetime
 from django.apps import apps
 
@@ -10,17 +11,39 @@ all_tickets = ticket.objects.all()
 all_customers = customer.objects.all()
 all_technicians = technician.objects.all()
 all_products = product.objects.all()
+all_statuses = status.objects.all()
 
 # Home page
 def dashboard(request):
     tickets = all_tickets.order_by('-updated_at')
     current_year = datetime.now().year
 
+    # Group tickets by status
+    total_tickets_by_status = []
+    status_list = []
+    status_colors = []
+    for status in all_statuses:
+        status_list.append(status.name)
+        status_colors.append('rgb('+str(random.randint(0,255))+','+str(random.randint(0,255))+','+str(random.randint(0,255))+')')
+        total_tickets_by_status.append(all_tickets.filter(status_id = status).count())
+
+    if sum(total_tickets_by_status) == 0:
+        no_tickets = True
+    else:
+        no_tickets = False
+
     context = {
+        # General
         'tickets': tickets,
         'customers': all_customers,
         'technicians': all_technicians,
-        'current_year': current_year
+        'current_year': current_year,
+        
+        # Pie chart
+        'status_colors': status_colors,
+        'status_list': status_list,
+        'no_tickets': no_tickets,
+        'total_tickets_by_status': total_tickets_by_status
     }
 
     return render(request, 'hotline/dashboard.html', context)

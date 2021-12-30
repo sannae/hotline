@@ -5,7 +5,7 @@
 <h2>Dashboard</h2>
 
 <div class="row">
-    <div class="col-4">
+    <div class="col">
         <a href="{% url 'new_ticket' %}" class="btn btn-success btn-lg">
             <h4>New ticket</h4>
         </a>
@@ -18,17 +18,26 @@
 </br>
 
 <div class="row">
-    <div class="col-9">
+    <div class="col">
         <div class="card-title">
-            <h4>Last tickets</h4>
+            <h4>Last 5 tickets</h4>
         </div>
         <div class="card-body">
             {% include 'hotline/ticket_table.html' %}
         </div>
     </div>
-    <div class="col-3">
-        <h3>Statistics</h3>
+    <div class="col">
+        <h4>Statistics</h4>
+        <div>
+            {% if no_tickets %}
+            <h5 style="color: grey;">No tickets</h5>
+            {% else %}
+            <canvas id="ticketPieChart"></canvas>
+            {% endif %}
+        </div>
     </div>
 </div>
+
+
 
 {% endblock %}

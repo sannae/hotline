@@ -7,5 +7,4 @@ admin.site.register(product)
 admin.site.register(department)
 admin.site.register(customer)
 admin.site.register(status)
-admin.site.register(priority)
 
