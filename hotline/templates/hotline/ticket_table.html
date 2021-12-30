@@ -23,37 +23,42 @@
         </tr>
     </thead>
     <tbody>
-        {% for ticket in tickets %}
-        <tr>
-            <td><a href="{% url 'ticket_detail' ticket.id %}"><b>{{ticket.title}}</b></a></td>
-            <td><a href="{% url 'customer_detail' ticket.customer_id.id %}">{{ticket.customer_id}}</a>
-                {% if ticket.customer_id.sw_contract == True %}
-                <span class="badge rounded-pill bg-primary" data-bs-toogle="tooltip" data-bs-placement="top"
-                    title="SOFTWARE maintenance contract for {{current_year}}">SW</span>
-                {% endif %}
-                {% if ticket.customer_id.hw_contract == True %}
-                <span class="badge rounded-pill bg-secondary" data-bs-toogle="tooltip" data-bs-placement="top"
-                    title="HARDWARE maintenance contract for {{current_year}}">HW</span>
-                {% endif %}
-            </td>
-            <td>{{ticket.updated_at|date:"d-m-Y H:m"}}</td>
-            <td><a href="{% url 'technician_detail' ticket.technician_id.id %}">
-                    {{ticket.technician_id}}</a></td>
-            <td>{{ticket.duration}}</td>
-            <td><span class="badge rounded-pill {{ticket.status_id.color}}">{{ticket.status_id}}</span></td>
-            <td>
-                {% for level in ticket.priority %}
-                    <span class="bi bi-star-fill"></span>
-                {% endfor %}
-            </td>
-            <td><a href="{% url 'update_ticket' ticket.id %}"><span class="btn btn-warning"><i
-                            class="bi bi-pen"></i></span></a></td>
-            <td><span class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"><i
-                        class="bi bi-trash"></i></span></td>
-        </tr>
-        
-        {% include 'hotline/delete_confirm.html' with object=ticket %}
+        {% if tickets %}
+            {% for ticket in tickets %}
+            <tr>
+                <td><a href="{% url 'ticket_detail' ticket.id %}"><b>{{ticket.title}}</b></a></td>
+                <td><a href="{% url 'customer_detail' ticket.customer_id.id %}">{{ticket.customer_id}}</a>
+                    {% if ticket.customer_id.sw_contract == True %}
+                    <span class="badge rounded-pill bg-primary" data-bs-toogle="tooltip" data-bs-placement="top"
+                        title="SOFTWARE maintenance contract for {{current_year}}">SW</span>
+                    {% endif %}
+                    {% if ticket.customer_id.hw_contract == True %}
+                    <span class="badge rounded-pill bg-secondary" data-bs-toogle="tooltip" data-bs-placement="top"
+                        title="HARDWARE maintenance contract for {{current_year}}">HW</span>
+                    {% endif %}
+                </td>
+                <td>{{ticket.updated_at|date:"d-m-Y H:m"}}</td>
+                <td><a href="{% url 'technician_detail' ticket.technician_id.id %}">
+                        {{ticket.technician_id}}</a></td>
+                <td>{{ticket.duration}}</td>
+                <td><span class="badge rounded-pill"
+                        style="background-color: {{ ticket.status_id.color }} !important;">{{ticket.status_id}}</span></td>
+                <td>
+                    <span class="bi bi-star-fill">{{ ticket.priority }}</span>
+                </td>
+                <td><a href="{% url 'update_ticket' ticket.id %}"><span class="btn btn-warning"><i
+                                class="bi bi-pen"></i></span></a></td>
+                <td><span class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"><i
+                            class="bi bi-trash"></i></span></td>
+            </tr>
 
-        {% endfor %}
+            {% include 'hotline/delete_confirm.html' with object=ticket %}
+
+            {% endfor %}
+
+        {% else %}
+        <tr style="color: grey;">No tickets</tr>
+        {% endif %}
+
     </tbody>
 </table>

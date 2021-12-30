@@ -24,7 +24,9 @@ def dashboard(request):
     status_colors = []
     for status in all_statuses:
         status_list.append(status.name)
-        status_colors.append('rgb('+str(random.randint(0,255))+','+str(random.randint(0,255))+','+str(random.randint(0,255))+')')
+        status_colors.append(status.color)
+        # Random colors
+        # status_colors.append('rgb('+str(random.randint(0,255))+','+str(random.randint(0,255))+','+str(random.randint(0,255))+')')
         total_tickets_by_status.append(all_tickets.filter(status_id = status).count())
 
     if sum(total_tickets_by_status) == 0:
