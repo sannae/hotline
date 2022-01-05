@@ -37,28 +37,37 @@ def create_customers(amount):
         'Muskaan Petty'
     ]
 
+    customer_addresses = [
+        '8509 Ohio Road Columbus, GA 31904',
+        '9069 E. Walnutwood Drive Saint Cloud, MN 56301',
+        '7661 Ramblewood Street Yuba City, CA 95993',
+        '446 Lakeview Street Billings, MT 59101',
+        '5 Wagon Dr. Zionsville, IN 46077',
+        '177 Pheasant Ave. Ronkonkoma, NY 11779'
+    ]
+
     # Create <amount> customers
     for i in range(0,amount):
-        customer = customer.objects.create(
+        my_customer = customer.objects.create(
             name=random.choice(customer_names),
             reference=random.choice(reference_names),
-            reference_phone=str(random.randint(111111,999999))
-            reference_email=random.choice(reference_names)+'@mail.com'
-            address=random.choice(customer_addresses)
-            phone='+39 '+str(random.randint(1111111,9999999))
-            sw_contract = bool(random.getrandbits(1))
+            reference_phone=str(random.randint(111111,999999)),
+            reference_email=random.choice(reference_names)+'@mail.com',
+            address=random.choice(customer_addresses),
+            phone='+39 '+str(random.randint(1111111,9999999)),
+            sw_contract = bool(random.getrandbits(1)),
             hw_contract = bool(random.getrandbits(1))
         )
         # Save in database
-        customer.save()
+        my_customer.save()
 
 class Command(BaseCommand):
     help = 'Populates the database with random generated data.'
 
     # Arguments 
-    # def add_arguments(self, parser):
-    #    parser.add_argument('--amount', type=int, help='The number of orders that should be created.')
-    #    parser.add_argument('--days', type=int, help='The max amount of days in the past')
+    def add_arguments(self, parser):
+        parser.add_argument('--amount', type=int, help='The number of orders that should be created.')
+        parser.add_argument('--days', type=int, help='The max amount of days in the past')
 
     # Create customers
 
