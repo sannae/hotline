@@ -9,7 +9,7 @@
                     <!-- TODO: Still working only on tickets, generalize delete form -->
                     <form action="{% url 'delete' object.id %}" method="POST">
                         {% csrf_token %}
-                        <button class="btn btn-warning"><a  data-bs-dismiss="modal" href="{% url 'home' %}">No, leave</a></button>
+                        <button class="btn btn-warning"><a data-bs-dismiss="modal" href="{% url 'home' %}">No, leave</a></button>
                         <button type="submit" class="btn btn-danger">Yes, proceed</button>
                     </form>
                 </div>
