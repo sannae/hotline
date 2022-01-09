@@ -12,6 +12,12 @@ from django.core.management.base import BaseCommand
 from hotline.models import *
 from hotline.views import new_product, product_list
 
+def random_date(days):
+    start_date = datetime.now(pytz.timezone('Europe/Rome'))
+    end_date = start_date - timedelta(days=random.randint(0,days)) - timedelta(hours=random.randint(0,24)) - timedelta(minutes=random.randint(0,60))
+
+    return end_date
+
 def create_customers(amount):
 
     customer_names = [
@@ -151,10 +157,10 @@ def create_products(amount):
 def create_statuses(amount):
 
     statuses = [
-        ("Pending","#900603"),
-        ("In Progress","#d4af37"),
-        ("Completed","#028A0F"),
-        ("Cancelled","#808080")
+        ("Pending","red"),
+        ("In Progress","orange"),
+        ("Completed","green"),
+        ("Cancelled","grey")
     ]
 
     for i in list(range(0,len(statuses))):
@@ -181,23 +187,20 @@ def create_tickets(amount,days):
             technician_id = random.choice(technician.objects.all()),
             title = lorem.sentence(),
             duration = random.randint(1,480),
+            created_at = random_date(days),
+            updated_at = random_date(days),
             priority = random.choice([level[0] for level in PRIORITY_LEVELS]),
             status_id = random.choice(status.objects.all()),
             notes = lorem.paragraph(),         
         )
-
-        # Random day in the last N days
-        dt = pytz.utc.localize(datetime.now() - timedelta(days=random.randint(0, days)))
-        new_ticket.created_at = dt
-        new_ticket.updated_at = dt
 
         # Multiple products
         total_statuses = status.objects.all().count()
         for i in range(random.randint(1,total_statuses)):
             new_ticket.products.add(random.choice(product.objects.all()))
 
-        # Save in database
         new_ticket.save()
+
 
 class Command(BaseCommand):
     help = 'Populates the database with random generated data.'
@@ -210,7 +213,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
 
         amount = options['amount'] if options['amount'] else 5
-        days = options['days'] if options['days'] else 2
+        days = options['days'] if options['days'] else 30
         
         # In order of dependencies:
         create_customers(amount)

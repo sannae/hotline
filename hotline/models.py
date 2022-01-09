@@ -69,10 +69,10 @@ class customer(models.Model):
 class status(models.Model):
 
     STATUS_COLORS = [     # Values from pill badges in Bootstrap
-        ('#900603','red'),    
-        ('#d4af37','orange'), 
-        ('#808080','grey'), 
-        ('#028A0F','green')
+        ('red','red'),    
+        ('orange','orange'), 
+        ('green','green'), 
+        ('grey','grey')
     ]
 
     # id = models.IntegerField(primary_key=True)
