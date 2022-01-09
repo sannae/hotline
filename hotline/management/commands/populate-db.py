@@ -5,12 +5,12 @@
 # To create 1000 random orders
 
 import lorem
-import random
+import random, string
 from datetime import datetime, timedelta
 import pytz
 from django.core.management.base import BaseCommand
 from hotline.models import *
-from hotline.views import new_product
+from hotline.views import new_product, product_list
 
 def create_customers(amount):
 
@@ -115,9 +115,11 @@ def create_technician(amount):
             last_name= random.choice(last_names),
             office_phone = '+39 '+str(random.randint(1111111,9999999)),
             mobile_phone = '+39 '+str(random.randint(1111111,9999999)),
-            email = random.choice(first_names)+'.'+random.choice(last_names)+'@mail.com',
+            email = '',
             department_id = random.choice(department.objects.all())
         )
+        # Set email
+        new_technician.email = new_technician.first_name + '.' + new_technician.last_name + '@mail.com'
         # Save in database
         new_technician.save()
 
@@ -138,7 +140,8 @@ def create_products(amount):
 
     for i in range(0,amount):
         new_product = product.objects.create(
-            name = random.choice(product_names),
+            name = random.choice(product_names) + 
+            ' ' + ''.join(random.choice(string.ascii_uppercase) for i in range(5)),
             department_id = random.choice(department.objects.all()),
             description = lorem.sentence()
         )
@@ -146,28 +149,55 @@ def create_products(amount):
         new_product.save()
 
 def create_statuses(amount):
-    status_names = [
-        'Pending',
-        'In Progress',
-        'Completed',
-        'Cancelled'
-    ]
-    colors = [
-        '#FF0000',
-        '#00FF00',
-        '#0000FF',
-        '#FFFF00',
+
+    statuses = [
+        ("Pending","#900603"),
+        ("In Progress","#d4af37"),
+        ("Completed","#028A0F"),
+        ("Cancelled","#808080")
     ]
 
-    for i in range(0,amount):
+    for i in list(range(0,len(statuses))):
         new_status = status.objects.create(
-            name = random.choice(status_names),
-            color = random.choice(colors)
+            name = statuses[i][0],
+            color = statuses[i][1]
         )
         # Save in database
         new_status.save()
 
+def create_tickets(amount,days):
 
+    for i in range(0,amount):
+
+        PRIORITY_LEVELS = [
+            ('1','Low'),
+            ('2','Medium'),
+            ('3','High'),
+            ('4','Urgent')
+        ]
+
+        new_ticket = ticket.objects.create(
+            customer_id = random.choice(customer.objects.all()),
+            technician_id = random.choice(technician.objects.all()),
+            title = lorem.sentence(),
+            duration = random.randint(1,480),
+            priority = random.choice([level[0] for level in PRIORITY_LEVELS]),
+            status_id = random.choice(status.objects.all()),
+            notes = lorem.paragraph(),         
+        )
+
+        # Random day in the last N days
+        dt = pytz.utc.localize(datetime.now() - timedelta(days=random.randint(0, days)))
+        new_ticket.created_at = dt
+        new_ticket.updated_at = dt
+
+        # Multiple products
+        total_statuses = status.objects.all().count()
+        for i in range(random.randint(1,total_statuses)):
+            new_ticket.products.add(random.choice(product.objects.all()))
+
+        # Save in database
+        new_ticket.save()
 
 class Command(BaseCommand):
     help = 'Populates the database with random generated data.'
@@ -188,7 +218,7 @@ class Command(BaseCommand):
         create_technician(amount)
         create_products(amount)
         create_statuses(amount)
-        # create_tickets
+        create_tickets(amount,days)
 
         self.stdout.write(self.style.SUCCESS('Successfully populated the database with ' + 
         str(amount) + ' objects!'))

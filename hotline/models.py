@@ -36,7 +36,7 @@ class technician(models.Model):
     email = models.CharField(max_length=100, null=True, blank=True) 
     department_id = ForeignKey('department', on_delete=models.PROTECT)
     def __str__(self):
-        return self.last_name
+        return self.last_name + ' ' + self.first_name[0] + '.'
 
 class product(models.Model):
     # id = models.IntegerField(primary_key=True)
@@ -69,10 +69,10 @@ class customer(models.Model):
 class status(models.Model):
 
     STATUS_COLORS = [     # Values from pill badges in Bootstrap
-        ('red','red'),    
-        ('orange','orange'), 
-        ('grey','grey'), 
-        ('green','green')
+        ('#900603','red'),    
+        ('#d4af37','orange'), 
+        ('#808080','grey'), 
+        ('#028A0F','green')
     ]
 
     # id = models.IntegerField(primary_key=True)

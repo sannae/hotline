@@ -10,7 +10,8 @@ from django.apps import apps
 # Selecting only models from app
 app_models = apps.all_models['hotline']
 for model in app_models:
-    selectedModel.objects.all().delete(app_models.get(model))
+    selectedModel = app_models.get(model)
+    selectedModel.objects.all().delete()
 
 class Command(BaseCommand):
     help = 'Clear the database'
