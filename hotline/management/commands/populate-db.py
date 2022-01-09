@@ -1,4 +1,4 @@
-# management/commands/populate_db.py
+# management/commands/populate-db.py
 
 # Usage:
 # > (env)$ python manage.py populate_db --amount 1000
@@ -166,6 +166,7 @@ def create_statuses(amount):
         )
         # Save in database
         new_status.save()
+
 
 
 class Command(BaseCommand):
