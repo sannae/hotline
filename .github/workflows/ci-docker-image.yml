@@ -24,13 +24,16 @@ jobs:
     # Checkout the repo
     - uses: actions/checkout@v2
 
-    # Remove the older versions of the image
-    - name: Remove older images
-      id: remove
+    # Remove the older versions of the image (TO BE COMPLETED, still not working)
+    - name: Find older images
+      id: find-older
       run:
         echo "::set-output name=images::$(docker images --format="{{.Repository}} {{.ID}}" | grep "hotline" | cut -d' ' -f2)"
+
+    - name: Remove older images
+      id: remove-older
       run:
-        if [ -z "$images" ]; then
+        if [ -z "${{ steps.remove.outputs.images }}" ]; then
           echo "No images found with this name"
         else
           docker image rm ${{ steps.remove.outputs.images }}
