@@ -29,6 +29,7 @@ jobs:
       id: remove
       run:
         echo "::set-output name=images::$(docker images --format="{{.Repository}} {{.ID}}" | grep "hotline" | cut -d' ' -f2)"
+      run:
         if [ -z "$images" ]; then
           echo "No images found with this name"
         else
