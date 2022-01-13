@@ -33,10 +33,10 @@ jobs:
     - name: Remove older images
       id: remove-older
       run:
-        if [ -z "${{ steps.remove.outputs.images }}" ]; then
+        if [ -z "${{ steps.find-older.outputs.images }}" ]; then
           echo "No images found with this name"
         else
-          docker image rm ${{ steps.remove.outputs.images }}
+          docker image rm ${{ steps.find-older.outputs.images }}
         fi
 
     # Build the latest docker image
