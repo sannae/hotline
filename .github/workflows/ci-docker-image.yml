@@ -26,9 +26,16 @@ jobs:
 
     # Remove the older versions of the image
     - name: Remove older images
-      run: docker image rm $(docker images --format="{{.Repository}} {{.ID}}" | grep "hotline" | cut -d' ' -f2)
+      id: remove
+      run:
+        echo "::set-output name=images::$(docker images --format="{{.Repository}} {{.ID}}" | grep "hotline" | cut -d' ' -f2)"
+        if [ -z "$images" ]; then
+          echo "No images found with this name"
+        else
+          docker image rm ${{ steps.remove.outputs.images }}
+        fi
 
-    # It builds the docker image
+    # Build the latest docker image
     - name: Build the Docker image
       run: docker build . --tag hotline:${{ steps.date.outputs.date }}
 
