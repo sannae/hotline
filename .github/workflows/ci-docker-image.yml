@@ -24,6 +24,14 @@ jobs:
     # Checkout the repo
     - uses: actions/checkout@v2
 
+    # Remove the older versions of the image
+    - name: Remove older images
+      run: docker image rm $(docker images --format="{{.Repository}} {{.ID}}" | grep "hotline" | cut -d' ' -f2)
+
     # It builds the docker image
     - name: Build the Docker image
       run: docker build . --tag hotline:${{ steps.date.outputs.date }}
+
+    # Push the image on the registry
+
+    # Remove the image
