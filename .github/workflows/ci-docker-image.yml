@@ -16,10 +16,14 @@ jobs:
 
     steps:
 
+    # Get current date to use in the docker image tag
     - name: Get current date
       id: date
-      run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+      run: echo "::set-output name=date::$(date +'%Y%m%d-%H%M')"
 
+    # Checkout the repo
     - uses: actions/checkout@v2
+
+    # It builds the docker image
     - name: Build the Docker image
       run: docker build . --tag hotline:${{ steps.date.outputs.date }}
