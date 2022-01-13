@@ -5,6 +5,7 @@
 <h2>Dashboard</h2>
 
 <div class="row">
+
     <div class="col">
         <a href="{% url 'new_ticket' %}" class="btn btn-success btn-lg">
             <h4>New ticket</h4>
@@ -13,11 +14,12 @@
             <h4>Search customer</h4>
         </a>
     </div>
+
 </div>
 
 </br>
 
-<div class="row">
+<div class="row" id="dashboard-main-board">
 
     <!-- Table -->
     <div class="col-8">
@@ -29,32 +31,75 @@
         </div>
     </div>
 
-    <!-- Stats -->
-    <div class="col-4">
-        <div class="card-title" style="text-align:center;">
-            <h4>Statistics</h4>
-        </div>
-        <div class="card-body">
-            {% if no_tickets %}
-            <h5 style="color: grey;">No tickets</h5>
-            {% else %}
-            <!-- First chart -->
-            <div style="position: relative;">
-                <canvas id="ticketPieChart"></canvas>
-            </div>
-            <!-- Second chart -->
-            <div style="position: relative;">
-                <canvas id="LineChart"></canvas>
-            </div>
-            <!-- Third chart -->
-            <div style="position: relative;">
-                <canvas id="RadarChart"></canvas>
-            </div>
-            {% endif %}
-        </div>
+    <!-- Calendar -->
+    <div class="col">
+        <h4>Calendar</h4>  
     </div>
+
 </div>
 
+<div class="row" id="dashboard-statistics">
 
+    <!-- Title -->
+    <div class="card-title" style="text-align:center;">
+        <h4>Statistics</h4>
+    </div>
+
+    {% if no_tickets %}
+    <div class="card-body">
+        <h5 style="color: grey; text-align:center;">No tickets</h5>
+    </div>
+    {% else %}
+
+    <!-- First chart -->
+	<div class="col">
+		<div class="col-md">
+			<div class="card text-center text-white  mb-3" id="total-orders">
+				<div class="card-header">
+					<h5 class="card-title">PieChart</h5>
+				</div>
+				<div class="card-body">
+					<div>
+						<canvas id="ticketPieChart"></canvas>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <!-- Second chart -->
+	<div class="col">
+		<div class="col-md">
+			<div class="card text-center text-white  mb-3" id="orders-delivered">
+				<div class="card-header">
+					<h5 class="card-title">LineChart</h5>
+				</div>
+				<div class="card-body">
+					<div>
+						<canvas id="LineChart"></canvas>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <!-- Third chart -->
+	<div class="col">
+		<div class="col-md">
+			<div class="card text-center text-white  mb-3" id="orders-pending">
+				<div class="card-header">
+					<h5 class="card-title">RadarChart</h5>
+				</div>
+				<div class="card-body">
+					<div>
+						<canvas id="RadarChart"></canvas>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    {% endif %}
+</div>
 
 {% endblock %}
