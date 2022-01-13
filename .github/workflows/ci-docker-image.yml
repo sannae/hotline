@@ -15,6 +15,11 @@ jobs:
     runs-on: self-hosted
 
     steps:
+
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build . --tag hotline:$(date +%s)
+      run: docker build . --tag hotline:${{ steps.date.outputs.date }}

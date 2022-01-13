@@ -8,7 +8,7 @@ WORKDIR /usr/src/app
 COPY requirements.txt ./
 RUN apt autoremove && apt clean
 RUN pip install --upgrade pip
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt --exclude pkg-resources
 
 # Copy the whole app folder
 COPY . .
