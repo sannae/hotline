@@ -16,28 +16,22 @@ jobs:
 
     steps:
 
+    # Checkout the repo
+    - uses: actions/checkout@v2
+
+    # Tests?
+
     # Get current date to use in the docker image tag
     - name: Get current date
       id: date
       run: echo "::set-output name=date::$(date +'%Y%m%d-%H%M')"
 
-    # Checkout the repo
-    - uses: actions/checkout@v2
-
-    # Remove the older versions of the image (TO BE COMPLETED, still not working)
+    # Remove the older versions of the image
     - name: Find older images
-      id: find-older
-      run:
-        echo "::set-output name=images::$(docker images --format="{{.Repository}} {{.ID}}" | grep "hotline" | cut -d' ' -f2)"
-
-    - name: Remove older images
-      id: remove-older
-      run:
-        if [ -z "${{ steps.find-older.outputs.images }}" ]; then
-          echo "No images found with this name"
-        else
-          docker image rm ${{ steps.find-older.outputs.images }}
-        fi
+      id: clean-images
+      run: |
+        chmod +x "${GITHUB_WORKSPACE}/.github/clean-images.sh"
+        "${GITHUB_WORKSPACE}/.github/clean-images.sh"
 
     # Build the latest docker image
     - name: Build the Docker image
