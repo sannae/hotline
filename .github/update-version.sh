@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Path
-pwd
+cd ./core
 
 # Current stats
 current_version=$(cat __init__.py | grep '__version__ = ' | cut -d"'" -f2)
