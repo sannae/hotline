@@ -22,12 +22,12 @@ jobs:
     # Tests?
 
     # Update version and save it in variable
-    - name: Update version
-      id: update-version
-      run: |
-        chmod +x "${GITHUB_WORKSPACE}/.github/update-version.sh"
-        "${GITHUB_WORKSPACE}/.github/update-version.sh"
-        echo "::set-output name=new_version::$(cat ${GITHUB_WORKSPACE}/core/__init__.py | grep '__version__ = ' | cut -d"'" -f2)"
+    # - name: Update version
+    #   id: update-version
+    #   run: |
+    #     chmod +x "${GITHUB_WORKSPACE}/.github/update-version.sh"
+    #     "${GITHUB_WORKSPACE}/.github/update-version.sh"
+    #     echo "::set-output name=new_version::$(cat ${GITHUB_WORKSPACE}/core/__init__.py | grep '__version__ = ' | cut -d"'" -f2)"
 
     # Get current date to use in the docker image tag
     - name: Get current date
@@ -43,7 +43,7 @@ jobs:
 
     # Build the latest docker image
     - name: Build the Docker image
-      run: docker build . --tag hotline:${{ steps.update-version.outputs.new_version}}-${{ steps.date.outputs.date }}
+      run: docker build . --tag hotline:${{ steps.date.outputs.date }}
 
     # Push the image on the registry (Canister?)
 
