@@ -21,6 +21,8 @@ jobs:
 
     # Tests?
 
+    # Update version and save it in variable
+
     # Get current date to use in the docker image tag
     - name: Get current date
       id: date
@@ -37,6 +39,6 @@ jobs:
     - name: Build the Docker image
       run: docker build . --tag hotline:${{ steps.date.outputs.date }}
 
-    # Push the image on the registry
+    # Push the image on the registry (Canister?)
 
     # Remove the image
