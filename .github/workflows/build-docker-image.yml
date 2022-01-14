@@ -43,8 +43,14 @@ jobs:
 
     # Build the latest docker image
     - name: Build the Docker image
-      run: docker build . --tag hotline:${{ steps.date.outputs.date }}
+      run: docker build . --tag hotline
 
-    # Push the image on the registry (Canister?)
+    # Push the image to the registry (Canister?)
+    # docker login --username=${{ secrets.CANISTER_ID }} --password=${{ secrets.CANISTER_PASSWORD }} cloud.canister.io:5000
+    # docker image tag hotline ${{ steps.update-version.outputs.version }}-${{ steps.date.outputs.date }}
+    # docker image tag hotline latest
+    # docker push hotline
 
-    # Remove the image
+    # Remove the local image
+
+    # Publish to Azure App Services
