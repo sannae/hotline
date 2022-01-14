@@ -27,7 +27,7 @@ jobs:
       run: |
         chmod +x "${GITHUB_WORKSPACE}/.github/update-version.sh"
         "${GITHUB_WORKSPACE}/.github/update-version.sh"
-        echo "::set-output name=new_version::$(cat __init__.py | grep '__version__ = ' | cut -d"'" -f2)"
+        echo "::set-output name=new_version::$(cat ${GITHUB_WORKSPACE}/core/__init__.py | grep '__version__ = ' | cut -d"'" -f2)"
 
     # Get current date to use in the docker image tag
     - name: Get current date
