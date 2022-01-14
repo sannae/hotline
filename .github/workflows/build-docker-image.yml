@@ -23,7 +23,7 @@ jobs:
 
     # Update version and save it in variable
     - name: Update version
-      id: version
+      id: update-version
       run: |
         chmod +x "${GITHUB_WORKSPACE}/.github/update-version.sh"
         "${GITHUB_WORKSPACE}/.github/update-version.sh"
