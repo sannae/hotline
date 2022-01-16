@@ -51,7 +51,6 @@ jobs:
         docker logout
         docker tag hotline cloud.canister.io/sannae/hotline:${{ steps.date.outputs.date }}
         docker tag hotline cloud.canister.io/sannae/hotline:latest
-        docker image ls
         docker login --username=${{ secrets.CANISTER_ID }} --password=${{ secrets.CANISTER_PASSWORD }} cloud.canister.io:5000
         docker push hotline:latest
 
