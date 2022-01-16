@@ -43,7 +43,7 @@ jobs:
 
     # Build the latest docker image
     - name: Build the Docker image
-      run: docker build . --tag hotline:${{ date }}
+      run: docker build . --tag hotline:${{ steps.date.outputs.date }}
 
     # Push the image to the registry (Canister?)
     # docker login --username=${{ secrets.CANISTER_ID }} --password=${{ secrets.CANISTER_PASSWORD }} cloud.canister.io:5000
