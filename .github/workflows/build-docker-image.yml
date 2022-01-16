@@ -52,7 +52,7 @@ jobs:
         docker tag hotline sannae/hotline:${{ steps.date.outputs.date }}
         docker tag hotline sannae/hotline:latest
         docker login --username=${{ secrets.DOCKERHUB_USERNAME }} --password=${{ secrets.DOCKERHUB_PASSWORD }}
-        docker push sannae/hotline:latest
+        docker push ${{ secrets.DOCKERHUB_USERNAME }}/hotline:latest
 
     # Remove the local image
 
