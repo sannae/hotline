@@ -51,8 +51,9 @@ jobs:
         docker logout
         docker tag hotline sannae/hotline:${{ steps.date.outputs.date }}
         docker tag hotline sannae/hotline:latest
-        docker login cloud.canister.io:5000 --username=${{ secrets.CANISTER_ID }} --password=boh
-        docker push sannae/hotline:latest
+        docker login cloud.canister.io:5000 --username=${{ secrets.CANISTER_ID }} --password=${{ secrets.CANISTER_PASSWORD }}
+        # docker push sannae/hotline:latest
+        docker push
 
     # Remove the local image
 
