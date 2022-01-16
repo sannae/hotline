@@ -48,8 +48,9 @@ jobs:
     # Push the image to the registry (Canister?)
     - name: Push to Canister registry
       run: |
+        docker logout
         docker login --username=${{ secrets.CANISTER_ID }} --password=${{ secrets.CANISTER_PASSWORD }} cloud.canister.io:5000
-        docker push hotline
+        docker push sannae/hotline
 
     # Remove the local image
 
