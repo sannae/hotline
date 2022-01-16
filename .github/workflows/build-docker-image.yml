@@ -46,12 +46,12 @@ jobs:
       run: docker build . --tag hotline
 
     # Push the image to the registry
-    - name: Push to Canister registry
+    - name: Push to DockerHub registry
       run: |
         docker logout
         docker tag hotline sannae/hotline:${{ steps.date.outputs.date }}
         docker tag hotline sannae/hotline:latest
-        docker login cloud.canister.io:5000 --username=${{ secrets.CANISTER_ID }} --password=${{ secrets.CANISTER_PASSWORD }}
+        docker login --username=${{ secrets.DOCKERHUB_USERNAME }} --password=${{ secrets.DOCKERHUB_PASSWORD }}
         docker push sannae/hotline:latest
 
     # Remove the local image
