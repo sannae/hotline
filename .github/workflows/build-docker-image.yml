@@ -43,14 +43,17 @@ jobs:
 
     # Build the latest docker image
     - name: Build the Docker image
-      run: docker build . --tag hotline:${{ steps.date.outputs.date }} --tag hotline:latest
+      run: docker build . --tag hotline:${{ steps.date.outputs.date }}
 
-    # Push the image to the registry (Canister?)
+    # Push the image to the registry
     - name: Push to Canister registry
       run: |
         docker logout
+        docker tag hotline cloud.canister.io/sannae/hotline:${{ steps.date.outputs.date }}
+        docker tag hotline cloud.canister.io/sannae/hotline:latest
+        docker image ls
         docker login --username=${{ secrets.CANISTER_ID }} --password=${{ secrets.CANISTER_PASSWORD }} cloud.canister.io:5000
-        docker push sannae/hotline
+        docker push hotline:latest
 
     # Remove the local image
 
