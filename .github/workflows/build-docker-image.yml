@@ -20,14 +20,16 @@ jobs:
     - uses: actions/checkout@v2
 
     # Tests?
+    # python3 -m manage test
 
     # Update version and save it in variable
-    # - name: Update version
-    #   id: update-version
-    #   run: |
-    #     chmod +x "${GITHUB_WORKSPACE}/.github/update-version.sh"
-    #     "${GITHUB_WORKSPACE}/.github/update-version.sh"
-    #     echo "::set-output name=new_version::$(cat ${GITHUB_WORKSPACE}/core/__init__.py | grep '__version__ = ' | cut -d"'" -f2)"
+    # Requires the dev repo to coincide with the workflow repo
+    - name: Update version
+      id: update-version
+      run: |
+        chmod +x "${GITHUB_WORKSPACE}/.github/update-version.sh"
+        "${GITHUB_WORKSPACE}/.github/update-version.sh"
+        echo "::set-output name=new-version::$(cat ${GITHUB_WORKSPACE}/core/__init__.py | grep '__version__ = ' | cut -d"'" -f2)"
 
     # Get current date to use in the docker image tag
     - name: Get current date
@@ -45,7 +47,7 @@ jobs:
     - name: Build the Docker image
       run: |
         docker build . --tag hotline
-        docker tag hotline sannae/hotline:${{ steps.date.outputs.date }}
+        docker tag hotline sannae/hotline:${{ steps.update-version.outputs.new-version }}-${{ steps.date.outputs.date }}
         docker tag hotline sannae/hotline:latest
 
   deploy:
@@ -60,7 +62,7 @@ jobs:
       run: |
         docker logout
         docker login --username=${{ secrets.DOCKERHUB_USERNAME }} --password=${{ secrets.DOCKERHUB_PASSWORD }}
-        docker push ${{ secrets.DOCKERHUB_USERNAME }}/hotline:latest
+        docker push ${{ secrets.DOCKERHUB_USERNAME }}/hotline
 
     # Remove the local image
 
