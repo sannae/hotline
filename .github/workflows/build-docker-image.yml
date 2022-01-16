@@ -18,6 +18,8 @@ jobs:
 
     # Checkout the repo
     - uses: actions/checkout@v2
+      with:
+        clean: false
 
     # Tests?
     # python3 -m manage test
@@ -62,7 +64,7 @@ jobs:
       run: |
         docker logout
         docker login --username=${{ secrets.DOCKERHUB_USERNAME }} --password=${{ secrets.DOCKERHUB_PASSWORD }}
-        docker push ${{ secrets.DOCKERHUB_USERNAME }}/hotline
+        docker push --all ${{ secrets.DOCKERHUB_USERNAME }}/hotline
 
     # Remove the local image
 
