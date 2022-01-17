@@ -17,6 +17,7 @@ jobs:
     - uses: actions/checkout@v2
       with:
         clean: false
+    # https://blog.healthchecks.io/2020/11/using-github-actions-to-run-django-tests/
     - name: Test
       run: |
         python3 -m manage test
@@ -26,7 +27,7 @@ jobs:
     runs-on: self-hosted
 
     steps:
-    # Update version and save it in variable
+    # Update version in core/__init__.py and save it in variable for the workflow
     # Requires the dev repo to coincide with the workflow repo
     - name: Update version
       id: update-version
@@ -73,3 +74,5 @@ jobs:
     # Remove the local image
 
     # Publish to Azure App Services
+
+    # Reset env for development
