@@ -10,20 +10,22 @@ on:
 
 jobs:
 
-  build:
-
+  test:
     runs-on: self-hosted
-
     steps:
-
     # Checkout the repo
     - uses: actions/checkout@v2
       with:
         clean: false
+    - name: Test
+      run: |
+        python3 -m manage test
 
-    # Tests?
-    # python3 -m manage test
+  build:
+    needs: test
+    runs-on: self-hosted
 
+    steps:
     # Update version and save it in variable
     # Requires the dev repo to coincide with the workflow repo
     - name: Update version
@@ -57,6 +59,8 @@ jobs:
     runs-on: self-hosted
 
     steps:
+
+    # Prepare for production
 
     # Push the image to the registry
     - name: Push to DockerHub registry
