@@ -21,10 +21,6 @@ jobs:
     - name: Test
       run: |
         python3 -m manage test
-    # https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
-    - name: Deploy check
-      run: |
-        python3 -m manage check --deploy --fail-level WARNING
 
   build:
     needs: test
@@ -65,7 +61,11 @@ jobs:
 
     steps:
 
-    # Prepare for production
+    # Prepare for deployment
+    # https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
+    - name: Deploy check
+      run: |
+        python3 -m manage check --deploy --fail-level WARNING
 
     # Push the image to the registry
     - name: Push to DockerHub registry
@@ -77,6 +77,6 @@ jobs:
 
     # Remove the local image
 
-    # Publish to Azure App Services
+    # Connect to demo db and publish to Azure App Services
 
     # Reset env for development
