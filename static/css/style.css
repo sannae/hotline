@@ -32,3 +32,10 @@
     /* Add a grey background color to the table header and on hover */
     background-color: #f1f1f1;
   }
+
+  /* Calendar */
+
+.fc .fc-toolbar-title {
+    font-size: 0.75em;
+    margin: 0;
+}

@@ -1,12 +1,4 @@
 <script>
-
-    // Get today's date
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    var yyyy = today.getFullYear();
-    today = yyyy + '/' + mm + '/' + dd;
-
     // Render the calendar
     document.addEventListener('DOMContentLoaded', function () {
         var calendarEl = document.getElementById('calendar');
@@ -17,19 +9,23 @@
             // General
             initialView: 'listWeek',
             themeSystem: 'bootstrap',
+            headerToolbar: { 
+                start: 'title',
+                center: 'dayGridMonth,listWeek',
+                end: 'today prev,next' },
 
             // Events
             events: [
                 {
                     title: 'Meeting',
-                    start: today + 'T14:30:00',
+                    start: '2022-01-18T14:30:00',
                     extendedProps: {
                         status: 'done'
                     }
                 },
                 {
                     title: 'Birthday Party',
-                    start: today + 'T07:00:00',
+                    start: '2022-01-18T07:00:00',
                     backgroundColor: 'green',
                     borderColor: 'green'
                 }
