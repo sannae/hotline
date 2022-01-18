@@ -24,7 +24,7 @@ jobs:
     # https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
     - name: Deploy check
       run: |
-        python3 -m manage check ---deploy
+        python3 -m manage check --deploy
 
   build:
     needs: test
