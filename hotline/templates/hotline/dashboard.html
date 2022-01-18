@@ -6,7 +6,7 @@
 
 <div class="row">
 
-    <div class="col">
+    <div class="col text-center">
         <a href="{% url 'new_ticket' %}" class="btn btn-success btn-lg">
             <h4>New ticket</h4>
         </a>
@@ -24,7 +24,7 @@
     <!-- Table -->
     <div class="col-8">
         <div class="card-title" style="text-align:center;">
-            <h4>Last 5 tickets</h4>
+            <a href="#"><h4>Last 5 tickets</h4></a>	
         </div>
         <div class="card-body">
             {% include 'hotline/ticket_table.html' %}
@@ -34,7 +34,7 @@
     <!-- Calendar -->
     <div class="col">
 		<div class="card-title" style="text-align: center;">
-			<h4>Calendar</h4>
+			<a href="#"><h4>Calendar</h4></a>
 		</div>
 		<div class="card-body">
 	        <div id='calendar'></div>  

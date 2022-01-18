@@ -9,12 +9,20 @@
             // General
             initialView: 'listWeek',
             themeSystem: 'bootstrap',
+            editable: true,
             headerToolbar: { 
                 start: 'title',
                 center: 'dayGridMonth,listWeek',
                 end: 'today prev,next' },
 
+            // Date navigation
+            navLinks: true,
+
             // Events
+            eventStartEditable: true,
+            eventResizableFromStart: true,
+
+            // Fictitious events
             events: [
                 {
                     title: 'Meeting',
