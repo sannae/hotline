@@ -211,22 +211,26 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument('--amount', type=int, help='The number of orders that should be created.')
         parser.add_argument('--days', type=int, help='The max amount of days in the past')
+        parser.add_argument('--tickets-only', type=boolean, help='Generate only tickets (use if the other objects already exists')
 
     def handle(self, *args, **options):
 
         amount = options['amount'] if options['amount'] else 5
         days = options['days'] if options['days'] else 30
-        
+        tickets-only = options['tickets-only'] if options['tickets-only'] else false
+
         # Clear the db first
-        management.call_command("clear-db") 
+        # management.call_command("clear-db") 
 
         # In order of dependencies:
-        create_customers(amount)
-        create_department(amount)
-        create_technician(amount)
-        create_products(amount)
-        create_statuses(amount)
+        if tickets-only == false:
+          create_customers(amount)
+          create_department(amount)
+          create_technician(amount)
+          create_products(amount)
+          create_statuses(amount)
         create_tickets(amount,days)
 
+        # Success message
         self.stdout.write(self.style.SUCCESS('Successfully populated the database with ' + 
         str(amount) + ' objects!'))
