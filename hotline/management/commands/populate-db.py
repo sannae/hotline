@@ -3,6 +3,7 @@
 # Usage:
 # > (env)$ python manage.py populate_db --amount 10 --days 30
 # To create 10 random objects with datetime properties included in the last 30 days
+# NOTE: The previous records are cleared out, use for test purposes only!
 
 import lorem
 import random, string

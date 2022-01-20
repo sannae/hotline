@@ -17,31 +17,26 @@ all_statuses = status.objects.all()
 # Home page
 def dashboard(request):
     tickets = all_tickets.order_by('-updated_at')
-    current_year = datetime.now().year
-
-    # Group tickets by status
-    total_tickets_by_status = []
-    status_list = []
-    status_colors = []
-    for status in all_statuses:
-        status_list.append(status.name)
-        status_colors.append(status.color)
-        # Random colors
-        # status_colors.append('rgb('+str(random.randint(0,255))+','+str(random.randint(0,255))+','+str(random.randint(0,255))+')')
-        filtered_tickets_by_status = all_tickets.filter(status_id=status.id)
-        total_tickets_by_status.append(filtered_tickets_by_status.count())
-
-    if sum(total_tickets_by_status) == 0:
-        no_tickets = True
-    else:
-        no_tickets = False
-
-    tickets_by_status = []
     this_month = datetime.today().month
     this_year = datetime.today().year
     days_this_month = calendar.monthrange(9999,this_month)[1]
     list_days = list(range(1,days_this_month+1))
-    for status in all_statuses:  
+
+    # Group tickets by status
+    tickets_by_status = []
+    total_tickets_by_status = []
+    status_list = []
+    status_colors = []
+
+    for status in all_statuses:
+
+        # Data for pie chart
+        status_list.append(status.name)
+        status_colors.append(status.color)
+        filtered_tickets_by_status = all_tickets.filter(status_id=status.id)
+        total_tickets_by_status.append(filtered_tickets_by_status.count())
+
+        # Data for stacked bar chart
         status_tickets = []
         for day in list_days:
             # Tickets in the current day
@@ -50,12 +45,18 @@ def dashboard(request):
         # Add the status name and the tickets list to the tickets_by_status list  
         tickets_by_status.append(status_tickets)
 
+    # No tickets
+    if sum(total_tickets_by_status) == 0:
+        no_tickets = True
+    else:
+        no_tickets = False
+
     context = {
         # General
         'tickets': tickets,
         'customers': all_customers,
         'technicians': all_technicians,
-        'current_year': current_year,
+        'current_year': this_year,
         'current_month': this_month,
         'current_day': datetime.today().day,
         
