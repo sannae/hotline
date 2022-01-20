@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from .models import *
 from .forms import *
+import calendar
 import random
 from datetime import datetime
 from django.apps import apps
@@ -27,12 +28,27 @@ def dashboard(request):
         status_colors.append(status.color)
         # Random colors
         # status_colors.append('rgb('+str(random.randint(0,255))+','+str(random.randint(0,255))+','+str(random.randint(0,255))+')')
-        total_tickets_by_status.append(all_tickets.filter(status_id = status).count())
+        filtered_tickets_by_status = all_tickets.filter(status_id=status.id)
+        total_tickets_by_status.append(filtered_tickets_by_status.count())
 
     if sum(total_tickets_by_status) == 0:
         no_tickets = True
     else:
         no_tickets = False
+
+    tickets_by_status = []
+    this_month = datetime.today().month
+    this_year = datetime.today().year
+    days_this_month = calendar.monthrange(9999,this_month)[1]
+    list_days = list(range(1,days_this_month+1))
+    for status in all_statuses:  
+        status_tickets = []
+        for day in list_days:
+            # Tickets in the current day
+            day_tickets = all_tickets.filter(status_id=status.id, updated_at__year=this_year, updated_at__month=this_month, updated_at__day=day)
+            status_tickets.append(day_tickets.count())
+        # Add the status name and the tickets list to the tickets_by_status list  
+        tickets_by_status.append(status_tickets)
 
     context = {
         # General
@@ -45,7 +61,11 @@ def dashboard(request):
         'status_colors': status_colors,
         'status_list': status_list,
         'no_tickets': no_tickets,
-        'total_tickets_by_status': total_tickets_by_status
+        'total_tickets_by_status': total_tickets_by_status,
+
+        # Bar chart
+        'list_days': list_days,
+        'tickets_by_status': tickets_by_status,
     }
 
     return render(request, 'hotline/dashboard.html', context)

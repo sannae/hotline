@@ -44,12 +44,60 @@
 
 <!-- Bar chart -->
 <script>
+
+// https://stackoverflow.com/questions/38421546/loop-dataset-chartjs-javascript
+var barChartData = { labels: {{ list_days | safe }}, datasets: [] }; 
+
+// Array containing the tickets
+tickets = {{ tickets_by_status | safe }};
+
+// Array containing all the statuses
+status_list = {{ status_list | safe }};
+
+// Array containing all the status' colors
+status_colors = {{ status_colors | safe }};
+
+// For loop over each line of the array
+tickets.forEach(function (a, i) {
+
+    // console.log(status_list[i]) // Status label
+    // console.log(a) // tickets
+    // console.log(status_colors[i]) // Status color
+
+    barChartData.datasets.push({
+            label: status_list[i],
+            data: a,
+            backgroundColor: status_colors[i],
+    });
+});
+
+console.log("LABELS");
+console.log(barChartData.labels);
+console.log("DATASETS");
+console.log(barChartData.datasets);
+
+// Render the chart
+var ctx = document.getElementById('BarChart');
+var myChart = new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: barChartData.labels,
+    datasets: barChartData.datasets,
+  },
+  options: {
+    scales: {
+      xAxes: [{ stacked: true }],
+      yAxes: [{ stacked: true }]
+    }
+  }
+});
+/*
 var ctx = document.getElementById('BarChart');
 
 var myChart = new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: ['A','B','C'],
+    labels: {{ list_days | safe }},
     datasets: [
       {
         label: 'Low',
@@ -75,6 +123,8 @@ var myChart = new Chart(ctx, {
     }
   }
 });
+
+*/
 </script>
 
 <script>
