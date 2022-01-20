@@ -1,181 +1,137 @@
 <!-- Pie chart -->
 <script>
 
-    // Setup
-    const pie_data = {
-        labels: {{ status_list | safe }},
-    datasets: [{
-        data: {{ total_tickets_by_status | safe }},
-        backgroundColor: {{ status_colors | safe }},
-        borderColor: '#FFF',
-        hoverOffset: 4,
+  // Setup
+  const pie_data = {
+    labels: {{ status_list | safe }},
+  datasets: [{
+    data: {{ total_tickets_by_status | safe }},
+    backgroundColor: {{ status_colors | safe }},
+    borderColor: '#FFF',
+    hoverOffset: 4,
             }]
         };
 
-    // Config
-    const pie_config = {
-        type: 'doughnut',
-        data: pie_data,
-        options: {
-            responsive: true,
-            legend: {
-                display: true,
-                position: 'right',
-                labels: {
-                    fontColor: "black",
-                    fontSize: 12
-                }
-            },
-            elements: {
-                arc: {
-                    borderWidth: 0
-                }
-            }
+  // Config
+  const pie_config = {
+    type: 'doughnut',
+    data: pie_data,
+    options: {
+      responsive: true,
+      legend: {
+        display: true,
+        position: 'right',
+        labels: {
+          fontColor: "black",
+          fontSize: 12
         }
-    };
+      },
+      elements: {
+        arc: {
+          borderWidth: 0
+        }
+      }
+    }
+  };
 
-    // Chart
-    var ticketPieChart = new Chart(
-        document.getElementById('ticketPieChart'),
-        pie_config
-    );
+  // Chart
+  var ticketPieChart = new Chart(
+    document.getElementById('ticketPieChart'),
+    pie_config
+  );
 
 </script>
 
 <!-- Bar chart -->
 <script>
 
-// https://stackoverflow.com/questions/38421546/loop-dataset-chartjs-javascript
-var barChartData = { labels: {{ list_days | safe }}, datasets: [] }; 
+  // https://stackoverflow.com/questions/38421546/loop-dataset-chartjs-javascript
+  var barChartData = { labels: {{ list_days | safe }}, datasets: [] };
 
-// Array containing the tickets
-tickets = {{ tickets_by_status | safe }};
+  // Array containing the tickets
+  tickets = {{ tickets_by_status | safe }};
 
-// Array containing all the statuses
-status_list = {{ status_list | safe }};
+  // Array containing all the statuses
+  status_list = {{ status_list | safe }};
 
-// Array containing all the status' colors
-status_colors = {{ status_colors | safe }};
+  // Array containing all the status' colors
+  status_colors = {{ status_colors | safe }};
 
-// For loop over each line of the array
-tickets.forEach(function (a, i) {
-
-    // console.log(status_list[i]) // Status label
-    // console.log(a) // tickets
-    // console.log(status_colors[i]) // Status color
-
+  // For loop over each line of the array
+  tickets.forEach(function (a, i) {
     barChartData.datasets.push({
-            label: status_list[i],
-            data: a,
-            backgroundColor: status_colors[i],
+      label: status_list[i],
+      data: a,
+      backgroundColor: status_colors[i],
     });
-});
+  });
 
-console.log("LABELS");
-console.log(barChartData.labels);
-console.log("DATASETS");
-console.log(barChartData.datasets);
-
-// Render the chart
-var ctx = document.getElementById('BarChart');
-var myChart = new Chart(ctx, {
-  type: 'bar',
-  data: {
-    labels: barChartData.labels,
-    datasets: barChartData.datasets,
-  },
-  options: {
-    scales: {
-      xAxes: [{ stacked: true }],
-      yAxes: [{ stacked: true }]
-    }
-  }
-});
-/*
-var ctx = document.getElementById('BarChart');
-
-var myChart = new Chart(ctx, {
-  type: 'bar',
-  data: {
-    labels: {{ list_days | safe }},
-    datasets: [
-      {
-        label: 'Low',
-        data: [10, 5, 3],
-        backgroundColor: 'green',
-      },
-      {
-        label: 'Moderate',
-        data: [4, 8, 11],
-        backgroundColor: 'orange',
-      },
-      {
-        label: 'High',
-        data: [5, 2, 1],
-        backgroundColor: 'red',
+  // Render the chart
+  var ctx = document.getElementById('BarChart');
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: barChartData.labels,
+      datasets: barChartData.datasets,
+    },
+    options: {
+      scales: {
+        xAxes: [{ stacked: true }],
+        yAxes: [{ stacked: true }]
       }
-    ]
-  },
-  options: {
-    scales: {
-      xAxes: [{ stacked: true }],
-      yAxes: [{ stacked: true }]
     }
-  }
-});
-
-*/
+  });
 </script>
 
 <script>
-    //Setup
-    const radar_data = {
-  labels: [
-    'Eating',
-    'Drinking',
-    'Sleeping',
-    'Designing',
-    'Coding',
-    'Cycling',
-    'Running'
-  ],
-  datasets: [{
-    label: 'My First Dataset',
-    data: [65, 59, 90, 81, 56, 55, 40],
-    fill: true,
-    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-    borderColor: 'rgb(255, 99, 132)',
-    pointBackgroundColor: 'rgb(255, 99, 132)',
-    pointBorderColor: '#fff',
-    pointHoverBackgroundColor: '#fff',
-    pointHoverBorderColor: 'rgb(255, 99, 132)'
-  }, {
-    label: 'My Second Dataset',
-    data: [28, 48, 40, 19, 96, 27, 100],
-    fill: true,
-    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-    borderColor: 'rgb(54, 162, 235)',
-    pointBackgroundColor: 'rgb(54, 162, 235)',
-    pointBorderColor: '#fff',
-    pointHoverBackgroundColor: '#fff',
-    pointHoverBorderColor: 'rgb(54, 162, 235)'
-  }]
-};
-    //Config
-    const radar_config = {
-  type: 'radar',
-  data: radar_data,
-  options: {
-    elements: {
-      line: {
-        borderWidth: 3
+  //Setup
+  const radar_data = {
+    labels: [
+      'Eating',
+      'Drinking',
+      'Sleeping',
+      'Designing',
+      'Coding',
+      'Cycling',
+      'Running'
+    ],
+    datasets: [{
+      label: 'My First Dataset',
+      data: [65, 59, 90, 81, 56, 55, 40],
+      fill: true,
+      backgroundColor: 'rgba(255, 99, 132, 0.2)',
+      borderColor: 'rgb(255, 99, 132)',
+      pointBackgroundColor: 'rgb(255, 99, 132)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgb(255, 99, 132)'
+    }, {
+      label: 'My Second Dataset',
+      data: [28, 48, 40, 19, 96, 27, 100],
+      fill: true,
+      backgroundColor: 'rgba(54, 162, 235, 0.2)',
+      borderColor: 'rgb(54, 162, 235)',
+      pointBackgroundColor: 'rgb(54, 162, 235)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgb(54, 162, 235)'
+    }]
+  };
+  //Config
+  const radar_config = {
+    type: 'radar',
+    data: radar_data,
+    options: {
+      elements: {
+        line: {
+          borderWidth: 3
+        }
       }
-    }
-  },
-};
-    // Chart
-    var RadarChart = new Chart(
-        document.getElementById('RadarChart'),
-        radar_config
-    );
+    },
+  };
+  // Chart
+  var RadarChart = new Chart(
+    document.getElementById('RadarChart'),
+    radar_config
+  );
 </script>

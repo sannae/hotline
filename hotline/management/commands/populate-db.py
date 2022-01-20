@@ -1,14 +1,15 @@
 # management/commands/populate-db.py
 
 # Usage:
-# > (env)$ python manage.py populate_db --amount 1000
-# To create 1000 random orders
+# > (env)$ python manage.py populate_db --amount 10 --days 30
+# To create 10 random objects with datetime properties included in the last 30 days
 
 import lorem
 import random, string
 from datetime import datetime, timedelta
 import pytz
 from django.core.management.base import BaseCommand
+from django.core import management
 from hotline.models import *
 from hotline.views import new_product, product_list
 
@@ -187,8 +188,8 @@ def create_tickets(amount,days):
             technician_id = random.choice(technician.objects.all()),
             title = lorem.sentence(),
             duration = random.randint(1,480),
-            created_at = random_date(days),
-            updated_at = random_date(days),
+            created_at = pytz.utc.localize(datetime.now() - timedelta(days=random.randint(0, days))), # random_date(days),
+            updated_at = pytz.utc.localize(datetime.now() - timedelta(days=random.randint(0, days))), #random_date(days),
             priority = random.choice([level[0] for level in PRIORITY_LEVELS]),
             status_id = random.choice(status.objects.all()),
             notes = lorem.paragraph(),         
@@ -215,6 +216,9 @@ class Command(BaseCommand):
         amount = options['amount'] if options['amount'] else 5
         days = options['days'] if options['days'] else 30
         
+        # Clear the db first
+        management.call_command("clear-db") 
+
         # In order of dependencies:
         create_customers(amount)
         create_department(amount)

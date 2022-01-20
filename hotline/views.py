@@ -45,7 +45,7 @@ def dashboard(request):
         status_tickets = []
         for day in list_days:
             # Tickets in the current day
-            day_tickets = all_tickets.filter(status_id=status.id, updated_at__year=this_year, updated_at__month=this_month, updated_at__day=day)
+            day_tickets = all_tickets.filter(status_id=status.id, updated_at__year=this_year, created_at__month=this_month, created_at__day=day)
             status_tickets.append(day_tickets.count())
         # Add the status name and the tickets list to the tickets_by_status list  
         tickets_by_status.append(status_tickets)
@@ -56,6 +56,8 @@ def dashboard(request):
         'customers': all_customers,
         'technicians': all_technicians,
         'current_year': current_year,
+        'current_month': this_month,
+        'current_day': datetime.today().day,
         
         # Pie chart
         'status_colors': status_colors,
