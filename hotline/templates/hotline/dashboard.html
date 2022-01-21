@@ -27,7 +27,11 @@
             <a href="#"><h4>Last 5 tickets</h4></a>	
         </div>
         <div class="card-body">
+			{% if no_tickets %}
+			<h5 style="color: grey; text-align:center;">No tickets</h5>
+			{% else %}
             {% include 'hotline/ticket_table.html' %}
+			{% endif %}
         </div>
     </div>
 

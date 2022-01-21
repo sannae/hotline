@@ -16,7 +16,7 @@ all_statuses = status.objects.all()
 
 # Home page
 def dashboard(request):
-    tickets = all_tickets.order_by('-updated_at')
+    tickets = all_tickets # .order_by('-updated_at')
     this_month = datetime.today().month
     this_year = datetime.today().year
     days_this_month = calendar.monthrange(9999,this_month)[1]
@@ -40,7 +40,7 @@ def dashboard(request):
         status_tickets = []
         for day in list_days:
             # Tickets in the current day
-            day_tickets = all_tickets.filter(status_id=status.id, updated_at__year=this_year, created_at__month=this_month, created_at__day=day)
+            day_tickets = all_tickets.filter(status_id=status.id, updated_at__year=this_year, updated_at__month=this_month, updated_at__day=day)
             status_tickets.append(day_tickets.count())
         # Add the status name and the tickets list to the tickets_by_status list  
         tickets_by_status.append(status_tickets)

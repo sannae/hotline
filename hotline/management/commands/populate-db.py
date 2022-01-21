@@ -211,24 +211,28 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument('--amount', type=int, help='The number of orders that should be created.')
         parser.add_argument('--days', type=int, help='The max amount of days in the past')
-        parser.add_argument('--tickets-only', type=boolean, help='Generate only tickets (use if the other objects already exists')
 
     def handle(self, *args, **options):
 
         amount = options['amount'] if options['amount'] else 5
         days = options['days'] if options['days'] else 30
-        tickets-only = options['tickets-only'] if options['tickets-only'] else false
 
         # Clear the db first
         # management.call_command("clear-db") 
 
-        # In order of dependencies:
-        if tickets-only == false:
-          create_customers(amount)
-          create_department(amount)
-          create_technician(amount)
-          create_products(amount)
-          create_statuses(amount)
+        # Create objects only if not pre-existent
+        if not customer.objects.all():
+            create_customers(amount)
+        if not department.objects.all():
+            create_department(amount)
+        if not technician.objects.all():
+            create_technician(amount)
+        if not product.objects.all():
+            create_products(amount)
+        if not status.objects.all():
+            create_statuses(amount)
+
+        # Create tickets nevertheless
         create_tickets(amount,days)
 
         # Success message
