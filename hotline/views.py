@@ -36,7 +36,6 @@ def dashboard(request):
         filtered_tickets_by_status = all_tickets.filter(status_id=status.id, updated_at__month=this_month)
         total_tickets_by_status.append(filtered_tickets_by_status.count())
 
-
         # Data for stacked bar chart
         status_tickets = []
         for day in list_days:
