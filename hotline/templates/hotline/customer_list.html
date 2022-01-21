@@ -2,19 +2,23 @@
 
 {% block content %}
 
-<!-- Header -->
-<h3 class="col text-center"><i class="bi bi-people-fill"></i></h3>
-
-<div class="col text-center">
-    <a href="{% url 'new_customer' %}" class="btn btn-info btn-lg"><h3>New customer</h3></a>
+<div class="row">
+    <div class="col">
+    <!-- Header -->
+    <h3 class="col text-center"><i class="fas fa-hands-helping"></i></h3>
+    <div class="col text-center">
+        <a href="{% url 'new_customer' %}" class="btn btn-info btn-lg"><h3>New customer</h3></a>
+    </div>
+    </div>
 </div>
 
 <br>
 
-<!-- Search -->
-<input type="text" id="SearchInput" onkeyup="filterTable()" placeholder="Cerca..." title="Type in a name">
+<div class="row">
+<div class="card">
 
-<h5>Filter active contracts</h5>
+    <!-- Search -->
+<input type="text" id="SearchInput" onkeyup="filterTable()" placeholder="Search..." title="Type in a name">
 
 <!-- Customer table ---->
 <table id="searchableTable" class="table table-responsive table-hover">
@@ -51,5 +55,8 @@
         {% endfor %}
     </tbody>
 </table>
+
+</div>
+</div>
 
 {% endblock %}

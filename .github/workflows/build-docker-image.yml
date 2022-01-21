@@ -13,14 +13,28 @@ jobs:
   test:
     runs-on: self-hosted
     steps:
-    # Checkout the repo
-    - uses: actions/checkout@v2
+
+    - name: Checkout the repo
+      uses: actions/checkout@v2
       with:
         clean: false
+
+    - name: Install Dependencies
+      run: |
+        python3 -m pip install --upgrade pip
+        pip install -r requirements.txt
+
     # https://blog.healthchecks.io/2020/11/using-github-actions-to-run-django-tests/
     - name: Test
       run: |
         python3 -m manage test
+
+    # https://docs.djangoproject.com/it/4.0/topics/testing/advanced/#integration-with-coverage-py
+    # coverage run --omit='*/venv/*' manage.py test
+    # coverage json       # To produce a JSON file containing the testing results
+    - name: Code coverage
+      run: |
+        echo "Code coverage tests here"
 
   build:
     needs: test
