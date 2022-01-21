@@ -17,6 +17,6 @@
 </ul>
 
 <h3>Last ticket handled by {{ my_technician.first_name }}</h3>
-{% include 'hotline/ticket_table.html' %}
+{% include 'hotline/ticket_table.html' with total_amount=total_amount %}
 
 {% endblock %}

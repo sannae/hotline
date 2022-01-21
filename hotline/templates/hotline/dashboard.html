@@ -30,7 +30,7 @@
 			{% if no_tickets %}
 			<h5 style="color: grey; text-align:center;">No tickets</h5>
 			{% else %}
-            {% include 'hotline/ticket_table.html' %}
+            {% include 'hotline/ticket_table.html' with total_amount=5 %}
 			{% endif %}
         </div>
     </div>
@@ -61,7 +61,7 @@
     {% else %}
 
     <!-- First chart -->
-	<div class="col-md">
+	<div class="col-md-4">
 		<div class="col-md">
 			<div class="card text-center mb-3" id="total-tickets">
 				<div class="card-header">
@@ -77,7 +77,7 @@
 	</div>
 
     <!-- Second chart -->
-	<div class="col-md">
+	<div class="col-md-4">
 		<div class="col-md">
 			<div class="card text-center mb-3" id="daily-tickets">
 				<div class="card-header">
@@ -93,7 +93,7 @@
 	</div>
 
     <!-- Third chart -->
-	<div class="col-md">
+	<div class="col-md-4">
 		<div class="col-md">
 			<div class="card text-center mb-3" id="">
 				<div class="card-header">
