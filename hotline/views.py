@@ -33,8 +33,9 @@ def dashboard(request):
         # Data for pie chart
         status_list.append(status.name)
         status_colors.append(status.color)
-        filtered_tickets_by_status = all_tickets.filter(status_id=status.id)
+        filtered_tickets_by_status = all_tickets.filter(status_id=status.id, updated_at__month=this_month)
         total_tickets_by_status.append(filtered_tickets_by_status.count())
+
 
         # Data for stacked bar chart
         status_tickets = []
@@ -56,6 +57,7 @@ def dashboard(request):
         'tickets': tickets,
         'customers': all_customers,
         'technicians': all_technicians,
+        'current_date': datetime.now(),
         'current_year': this_year,
         'current_month': this_month,
         'current_day': datetime.today().day,
