@@ -11,6 +11,7 @@ on:
 jobs:
 
   test:
+
     runs-on: self-hosted
     steps:
 
@@ -32,11 +33,12 @@ jobs:
     # https://docs.djangoproject.com/it/4.0/topics/testing/advanced/#integration-with-coverage-py
     # coverage run --omit='*/venv/*' manage.py test
     # coverage json       # To produce a JSON file containing the testing results
-    - name: Code coverage
+    - name: Tests code coverage
       run: |
         echo "Code coverage tests here"
 
   build:
+
     needs: test
     runs-on: self-hosted
 
@@ -70,6 +72,7 @@ jobs:
         docker tag hotline sannae/hotline:latest
 
   deploy:
+
     needs: build
     runs-on: self-hosted
 
@@ -84,7 +87,6 @@ jobs:
 
     # Push the image to the registry
     - name: Push to DockerHub registry
-      
       run: |
         docker logout
         docker login --username=${{ secrets.DOCKERHUB_USERNAME }} --password=${{ secrets.DOCKERHUB_PASSWORD }}
