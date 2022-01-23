@@ -20,14 +20,13 @@ jobs:
       with:
         clean: false
 
-    # - uses: actions/setup-python@v2
-    #  with:
-    #    python-version: '3.x'
+    - name: Create dependencies list
+      run:
+        pip freeze | grep -v "pkg-resources" > requirements.txt
 
     - name: Install Dependencies
       run: |
-        python3 --version
-        python3 -m pip install --upgrade pip
+        pip install --upgrade pip
         pip install -r requirements.txt
 
     # https://blog.healthchecks.io/2020/11/using-github-actions-to-run-django-tests/
