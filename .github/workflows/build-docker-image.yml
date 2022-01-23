@@ -39,7 +39,7 @@ jobs:
     # https://docs.djangoproject.com/it/4.0/topics/testing/advanced/#integration-with-coverage-py
     - name: Tests code coverage
       env:
-        MINIMUM_COVERAGE: 20
+        MINIMUM_COVERAGE: 80
       run: |
         coverage run --omit='*/venv/*' manage.py test
         coverage json
