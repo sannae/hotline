@@ -31,7 +31,9 @@ jobs:
 
     # https://blog.healthchecks.io/2020/11/using-github-actions-to-run-django-tests/
     - name: Test
-      run: |
+      env:
+        SECRET_KEY: "{{ secrets.SECRET_KEY }}"
+      run: |      
         python3 -m manage test
 
     # https://docs.djangoproject.com/it/4.0/topics/testing/advanced/#integration-with-coverage-py
