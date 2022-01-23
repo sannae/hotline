@@ -22,7 +22,7 @@ jobs:
 
     - name: Create dependencies list
       run:
-        pip freeze | grep -v "pkg-resources" > requirements.txt
+        pip freeze | grep -v "pkg_resources" > requirements.txt
 
     - name: Install Dependencies
       run: |

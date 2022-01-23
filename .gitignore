@@ -1,11 +1,4 @@
-# Private files
-/secrets.json
-
-# Pycache
 __pycache__/
-
-# Virtual environment
 venv/
-
-# Visual Studio Code
 .vscode/
+.env
