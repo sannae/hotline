@@ -15,7 +15,7 @@ jobs:
     runs-on: self-hosted
     steps:
 
-    - name: Checkout the repo
+    - name: Checkout latest commit
       uses: actions/checkout@v2
       with:
         clean: false
@@ -40,8 +40,13 @@ jobs:
     # coverage run --omit='*/venv/*' manage.py test
     # coverage json       # To produce a JSON file containing the testing results
     - name: Tests code coverage
+      env:
+        MINIMUM_COVERAGE: 80
       run: |
-        echo "Code coverage tests here"
+        if [ $(cat coverage.json | jq -r '.totals.percent_covered_display') -lt $MINIMUM_COVERAGE ]; then
+          echo "Code coverage is below the minimum threshold of $MINIMUM_COVERAGE%"
+          exit 1
+        fi
 
   build:
 
@@ -74,7 +79,7 @@ jobs:
     - name: Build the Docker image
       run: |
         docker build . --tag hotline
-        docker tag hotline sannae/hotline:${{ steps.update-version.outputs.new-version }}-${{ steps.date.outputs.date }}
+        docker tag hotline sannae/hotline:${{ steps.update-version.outputs.new-version }}${{ steps.date.outputs.date }}
         docker tag hotline sannae/hotline:latest
 
   deploy:
@@ -99,6 +104,14 @@ jobs:
         docker push --all-tags ${{ secrets.DOCKERHUB_USERNAME }}/hotline
 
     # Remove the local image
+    - name: Clean up locally
+      run: |
+        docker rmi hotline
+        docker rmi sannae/hotline
+
+    - name: Clean up remotely
+      run: |
+        echo "delete the oldest tags on the Docker Hub registry"
 
     # Connect to demo db and publish to Azure App Services
 
