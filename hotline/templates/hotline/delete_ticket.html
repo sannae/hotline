@@ -1,0 +1,18 @@
+<!-- Just a confirmation page -->
+
+{% block content %}
+        <!-- Delete Modal -->
+        <div class="modal fade" id="deleteTicketModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <form action="#" method="POST">
+                        {% csrf_token %}
+                        <p>Are you sure you want to delete ticket {{ ticket.title|upper }} ?</p>
+                        <input type="submit" class="btn btn-danger waves-effect" value="YES, proceed">
+                        <a href="{% url 'home' %}" type="submit" class="btn btn-secondary" data-bs-dismiss="modal">NO, leave</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}

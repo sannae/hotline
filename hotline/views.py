@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
+from django.shortcuts import get_object_or_404
 from .models import *
 from .forms import *
 import calendar
@@ -92,21 +93,6 @@ def new_ticket(request):
     }
     return render(request, 'hotline/ticket_form.html', context)  
 
-# Update ticket
-def update_ticket(request, pk):
-    ticket = all_tickets.get(id=pk)
-    form = ticketForm(instance=ticket)
-    if request.method == "POST":
-        form = ticketForm(request.POST, instance=ticket)
-        if form.is_valid():
-            form.save()
-            return redirect('/')
-    context = {
-        'ticket_form': form,
-        'current_view': request.resolver_match.url_name
-    }
-    return render(request, 'hotline/ticket_form.html', context)
-
 # Ticket detail page
 def ticket_detail(request, pk):
     my_ticket = ticket.objects.get(id=pk)
@@ -114,27 +100,6 @@ def ticket_detail(request, pk):
         'my_ticket': my_ticket,
     }
     return render(request, 'hotline/ticket_detail.html', context)
-
-def delete(request, pk):
-
-    # TODO: Do *not* depend on the object, here instantiated explicitely
-    obj = "ticket"
-
-    # Object to be deleted
-    app_models = apps.all_models['hotline']
-    selectedModel = app_models.get(obj)
-    object = selectedModel.objects.get(id=pk)
-
-    # Actual deletion
-    if request.method == "POST":
-        object.delete()
-        # Go back to home
-        return redirect('/')
-
-    context = {
-    }
-
-    return render(request, 'hotline/delete_confirm.html', context)
 
 # --- Customers ---
 
@@ -173,21 +138,6 @@ def new_customer(request):
     }
     return render(request, 'hotline/customer_form.html', context)  
 
-# Update ticket
-def update_customer(request, pk):
-    customer = all_customers.get(id=pk)
-    form = customerForm(instance=customer)
-    if request.method == "POST":
-        form = customerForm(request.POST, instance=customer)
-        if form.is_valid():
-            form.save()
-            return redirect('/')
-    context = {
-        'customer_form': form,
-        'current_view': request.resolver_match.url_name
-    }
-    return render(request, 'hotline/customer_form.html', context)
-
 # --- Technicians ---
 
 # Technician detail page
@@ -223,21 +173,6 @@ def new_technician(request):
     }
     return render(request, 'hotline/technician_form.html', context)  
 
-# Update technician
-def update_technician(request, pk):
-    technician = all_technicians.get(id=pk)
-    form = technicianForm(instance=technician)
-    if request.method == "POST":
-        form = technicianForm(request.POST, instance=technician)
-        if form.is_valid():
-            form.save()
-            return redirect('/')
-    context = {
-        'technician_form': form,
-        'current_view': request.resolver_match.url_name
-    }
-    return render(request, 'hotline/technician_form.html', context)
-
 # --- Products ---
 
 # Product detail page
@@ -271,17 +206,3 @@ def new_product(request):
     }
     return render(request, 'hotline/product_form.html', context)
 
-# Update product
-def update_product(request, pk):
-    product = all_products.get(id=pk)
-    form = productForm(instance=product)
-    if request.method == "POST":
-        form = productForm(request.POST, instance=product)
-        if form.is_valid():
-            form.save()
-            return redirect('/')
-    context = {
-        'product_form': form,
-        'current_view': request.resolver_match.url_name
-    }
-    return render(request, 'hotline/product_form.html', context)
