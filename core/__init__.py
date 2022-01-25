@@ -1,7 +1,7 @@
 import django
 
 __title__ = 'hotline'
-__version__ = '0.0.19'
+__version__ = '0.0.20'
 __author__ = 'Edoardo Sanna'
 __license__ = 'MIT'
 
