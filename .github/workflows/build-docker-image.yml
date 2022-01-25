@@ -1,4 +1,6 @@
-# https://github.com/actions/starter-workflows/blob/main/ci/docker-image.yml
+# self-hosted Linux runner
+# requires Python 3.x
+# requires Docker
 
 name: Docker Image CICD
 
