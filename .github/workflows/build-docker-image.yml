@@ -25,14 +25,16 @@ jobs:
       with:
         clean: false
 
+    - run: |
+        echo '${{ repo_user }}'
+        echo '${{ repo_name }}'
+
     - name: Create dependencies list
       run:
         pip freeze | grep -v "pkg_resources" > requirements.txt
 
     - name: Install Dependencies
       run: |
-        echo '${{ repo_user }}'
-        echo '${{ repo_name }}'
         pip install --upgrade pip
         pip install -r requirements.txt
 
