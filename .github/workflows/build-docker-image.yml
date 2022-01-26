@@ -27,8 +27,8 @@ jobs:
 
     - name: test
       run:
-        echo $REPO_USER
-        echo $REPO_NAME
+        echo "$REPO_USER"
+        echo "$REPO_NAME"
 
     - name: Create dependencies list
       run:
