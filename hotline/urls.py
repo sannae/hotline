@@ -7,7 +7,6 @@ urlpatterns = [
 
     # Home
     path('', views.dashboard, name='home'),
-    path('<int:id>/', views.DetailView.as_view(), name='detail'),
 
     # ---- Tickets ----
 
