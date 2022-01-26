@@ -3,9 +3,6 @@
 # requires Docker
 
 name: Docker Image CICD
-env:
-  repo_user: ${{ github.event.repository.owner }}
-  repo_name: ${{ github.event.repository.name }}
 
 on:
   push:
@@ -26,8 +23,8 @@ jobs:
         clean: false
 
     - run: |
-        echo '${{ env.repo_user }}'
-        echo '${{ env.repo_name }}'
+        echo '${{ github.event.repository.owner }}'
+        echo '${{ github.event.repository.name }}'
 
     - name: Create dependencies list
       run:
