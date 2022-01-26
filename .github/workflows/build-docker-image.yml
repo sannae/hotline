@@ -24,6 +24,8 @@ jobs:
         REPO_NAME: "{{ github.event.repository.name }}"
       with:
         clean: false
+
+    - name: test
       run:
         echo $REPO_USER
         echo $REPO_NAME
