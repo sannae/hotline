@@ -26,8 +26,8 @@ jobs:
         clean: false
 
     - run: |
-        echo '${{ repo_user }}'
-        echo '${{ repo_name }}'
+        echo '${{ env.repo_user }}'
+        echo '${{ env.repo_name }}'
 
     - name: Create dependencies list
       run:
