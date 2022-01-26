@@ -3,6 +3,9 @@
 # requires Docker
 
 name: Docker Image CICD
+env:
+  repo_user: ${{ github.event.repository.owner }}
+  repo_name: ${{ github.event.repository.name }}
 
 on:
   push:
@@ -24,11 +27,12 @@ jobs:
 
     - name: Create dependencies list
       run:
-        echo "repo info - $env.GITHUB_REPOSITORY_OWNER and $env.GITHUB_REPOSITORY"
         pip freeze | grep -v "pkg_resources" > requirements.txt
 
     - name: Install Dependencies
       run: |
+        echo '${{ repo_user }}'
+        echo '${{ repo_name }}'
         pip install --upgrade pip
         pip install -r requirements.txt
 
