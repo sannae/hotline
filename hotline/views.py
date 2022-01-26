@@ -94,19 +94,17 @@ def new_ticket(request):
     return render(request, 'hotline/ticket_form.html', context)  
 
 # Ticket detail page
-def ticket_detail(request, pk):
-    my_ticket = ticket.objects.get(id=pk)
-    context = {
-        'my_ticket': my_ticket,
-    }
+def ticket_detail(request, ticket_id):
+    my_ticket = get_object_or_404(ticket, pk=ticket_id)
+    context = { 'my_ticket': my_ticket, }
     return render(request, 'hotline/ticket_detail.html', context)
 
 # --- Customers ---
 
 # Customer detail page
-def customer_detail(request, pk):
-    my_customer = customer.objects.get(id=pk)
-    tickets = all_tickets.filter(customer_id=pk).order_by('-updated_at')
+def customer_detail(request, id):
+    my_customer = get_object_or_404(customer, pk=id)
+    tickets = all_tickets.filter(customer_id=id).order_by('-updated_at')
     current_year = datetime.now().year
     context = {
         'my_customer': my_customer,
@@ -141,9 +139,9 @@ def new_customer(request):
 # --- Technicians ---
 
 # Technician detail page
-def technician_detail(request, pk):
-    my_technician = technician.objects.get(id=pk)
-    tickets = all_tickets.filter(technician_id=pk).order_by('-updated_at')
+def technician_detail(request, id):
+    my_technician = get_object_or_404(technician, pk=id)
+    tickets = all_tickets.filter(technician_id=id).order_by('-updated_at')
     context = {
         'my_technician': my_technician,
         'tickets': tickets
@@ -176,8 +174,8 @@ def new_technician(request):
 # --- Products ---
 
 # Product detail page
-def product_detail(request, pk):
-    my_product = product.objects.get(id=pk)
+def product_detail(request, id):
+    my_product = get_object_or_404(product, pk=id)
     context = {
         'my_product': my_product,
     }
