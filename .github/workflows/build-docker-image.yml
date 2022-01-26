@@ -23,7 +23,7 @@ jobs:
         clean: false
 
     - run: |
-        echo '${{ github.event.repository_owner }}'
+        echo '${{ github.repository_owner }}'
         echo '${{ github.event.repository.name }}'
 
     - name: Create dependencies list
