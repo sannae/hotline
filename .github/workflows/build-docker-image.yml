@@ -22,13 +22,9 @@ jobs:
       with:
         clean: false
 
-    - name: test
-      run:
-        echo $"{{ GITHUB_REPOSITORY_OWNER }}"
-        echo $"{{ github.event.repository.name }}"
-
     - name: Create dependencies list
       run:
+        echo "repo info - $env.GITHUB_REPOSITORY_OWNER and $env.GITHUB_REPOSITORY"
         pip freeze | grep -v "pkg_resources" > requirements.txt
 
     - name: Install Dependencies
