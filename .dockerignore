@@ -1,1 +1,5 @@
+.coverage
+.env
+coverage.json
 venv
+Makefile
