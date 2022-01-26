@@ -19,14 +19,13 @@ jobs:
 
     - name: Checkout latest commit
       uses: actions/checkout@v2
-
       with:
         clean: false
 
     - name: test
       run:
-        echo "${{ GITHUB_REPOSITORY_OWNER }}"
-        echo "${{ github.event.repository.name }}"
+        echo $"{{ GITHUB_REPOSITORY_OWNER }}"
+        echo $"{{ github.event.repository.name }}"
 
     - name: Create dependencies list
       run:
