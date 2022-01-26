@@ -19,16 +19,14 @@ jobs:
 
     - name: Checkout latest commit
       uses: actions/checkout@v2
-      env:
-        REPO_USER: "{{ GITHUB_REPOSITORY_OWNER }}"
-        REPO_NAME: "{{ github.event.repository.name }}"
+
       with:
         clean: false
 
     - name: test
       run:
-        echo "$REPO_USER"
-        echo "$REPO_NAME"
+        echo "${{ GITHUB_REPOSITORY_OWNER }}"
+        echo "${{ github.event.repository.name }}"
 
     - name: Create dependencies list
       run:
