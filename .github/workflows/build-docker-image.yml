@@ -22,10 +22,6 @@ jobs:
       with:
         clean: false
 
-    - run: |
-        echo '${{ github.repository_owner }}'
-        echo '${{ github.event.repository.name }}'
-
     - name: Create dependencies list
       run:
         pip freeze | grep -v "pkg_resources" > requirements.txt
@@ -87,9 +83,9 @@ jobs:
     # The approach is described at https://stackoverflow.com/questions/56212495/properly-versioning-docker-images
     - name: Build the Docker image
       run: |
-        docker build . --tag hotline
-        docker tag hotline sannae/hotline:${{ steps.update-version.outputs.new-version }}-${{ steps.date.outputs.date }}
-        docker tag hotline sannae/hotline:latest
+        docker build . --tag ${{ github.event.repository.name }}
+        docker tag ${{ github.event.repository.name }} ${{ github.repository_owner }}/${{ github.event.repository.name }}:${{ steps.update-version.outputs.new-version }}-${{ steps.date.outputs.date }}
+        docker tag ${{ github.event.repository.name }} ${{ github.repository_owner }}/${{ github.event.repository.name }}:latest
 
   deploy:
 
@@ -110,13 +106,13 @@ jobs:
       run: |
         docker logout
         docker login --username=${{ secrets.DOCKERHUB_USERNAME }} --password=${{ secrets.DOCKERHUB_PASSWORD }}
-        docker push --all-tags ${{ secrets.DOCKERHUB_USERNAME }}/hotline
+        docker push --all-tags ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}
 
     # Remove the local image
     - name: Clean up locally
       run: |
-        docker rmi hotline
-        docker rmi sannae/hotline
+        docker rmi ${{ github.event.repository.name }}
+        docker rmi ${{ github.repository_owner }}/${{ github.event.repository.name }}
 
     - name: Clean up remotely
       run: |
