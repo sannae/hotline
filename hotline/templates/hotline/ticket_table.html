@@ -49,9 +49,9 @@
                                 <span class="bi bi-star-fill">{{ ticket.priority }}</span>
                             </td>
                             <td><a href="#"><span class="btn btn-warning"><i
-                                            class="bi bi-pen"></i></span></a></td>
-                            <td><span class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteTicketModal"><i
-                                        class="bi bi-trash"></i></span></td>
+                                            class="fas fa-pencil-alt"></i></span></a></td>
+                            <td><span class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteTicketModal"><i class="fa fa-times"></i></span></td>
+                                        
                         </tr>
 
                         {% include 'hotline/delete_ticket.html' with object=ticket %}

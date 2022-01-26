@@ -21,6 +21,8 @@
     <link href='https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.1/css/all.css' rel='stylesheet'>
     <!-- Fullcalendar -->
     <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css' rel='stylesheet' type='text/css'>
+    <!-- Semantic UI -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
     <!-- Import the main CSS file in the static files folder -->
     <link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}">
 
@@ -50,7 +52,17 @@
 <!-- Fullcalendar (https://fullcalendar.io/) -->
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
 {% include 'hotline/calendar-js.html' %}
+<!-- Semantic UI -->
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 <!-- Static JS -->
 <script src="{% static '/js/main.js' %}"></script>
+
+<!-- Additional scripts -->
+<script> 
+        // Semantic UI
+        $('select.dropdown')
+  .dropdown()
+;
+</script>
 
 </html>

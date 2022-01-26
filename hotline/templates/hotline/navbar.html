@@ -1,40 +1,52 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="{% url 'home' %}"><i class="fas fa-fire fa-2x"></i></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <h3>
-            <a class="nav-link active" aria-current="page" href="{% url 'home' %}"><i class="fas fa-tachometer-alt" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Dashboard"></i></a>
-            </h3>
-          </li>
-          <li class="nav-item">
-            <h3>
-            <a class="nav-link" href="{% url 'customer_list' %}"><i class="fas fa-hands-helping" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Customers"></i></a>
-            </h3>
-          </li>
-          <li class="nav-item">
-            <h3>
-            <a class="nav-link" href="{% url 'technician_list' %}"><i class="fas fa-user-cog" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Technicians"></i></a>
-            </h3>
-          </li>
-          <li class="nav-item">
-            <h3>
-            <a class="nav-link" href="{% url 'product_list' %}"><i class="fas fa-shopping-basket" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Products"></i></a>
-            </h3>
-          </li>
-        </ul>
-        <!--
-        <span class="navbar-text">
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search in the website..." aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-              </form>
-        </span>
-      -->
-      </div>
+  <div class="container-fluid">
+
+    <!-- Logo -->
+    <a class="navbar-brand" href="{% url 'home' %}"><i class="fas fa-fire fa-2x"></i></a>
+
+    <!-- Toogle button -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+      aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible -->
+    <div class="collapse navbar-collapse" id="navbarText">
+
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <h3>
+            <a class="nav-link active" aria-current="page" href="{% url 'home' %}"><i class="fas fa-tachometer-alt"
+                data-bs-toggle="tooltip" data-bs-placement="bottom" title="Dashboard"></i></a>
+          </h3>
+        </li>
+        <li class="nav-item">
+          <h3>
+            <a class="nav-link" href="{% url 'customer_list' %}"><i class="fas fa-hands-helping"
+                data-bs-toggle="tooltip" data-bs-placement="bottom" title="Customers"></i></a>
+          </h3>
+        </li>
+        <li class="nav-item">
+          <h3>
+            <a class="nav-link" href="{% url 'technician_list' %}"><i class="fas fa-user-cog" data-bs-toggle="tooltip"
+                data-bs-placement="bottom" title="Technicians"></i></a>
+          </h3>
+        </li>
+        <li class="nav-item">
+          <h3>
+            <a class="nav-link" href="{% url 'product_list' %}"><i class="fas fa-shopping-basket"
+                data-bs-toggle="tooltip" data-bs-placement="bottom" title="Products"></i></a>
+          </h3>
+        </li>
+      </ul>
     </div>
-  </nav>
+
+    <span class="nav-item">
+      <h3>
+        <a class="nav-link" href="#"><i class="fa fa-user-circle fa-2x" data-bs-toggle="tooltip"
+            data-bs-placement="bottom" title="Profile"></i></a>
+      </h3>
+    </span>
+
+  </div>
+</nav>
